@@ -1,0 +1,27 @@
+{# Version dropdown for sphinx-multiversion, styled like the pydata theme's
+   built-in switcher. `current_version`/`versions` are only defined when
+   building with sphinx-multiversion, so plain sphinx-build renders nothing. #}
+{%- if current_version %}
+<div class="version-switcher__container dropdown">
+  <button id="pst-version-switcher-button"
+          type="button"
+          class="version-switcher__button btn btn-sm dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-haspopup="listbox"
+          aria-controls="pst-version-switcher-list"
+          aria-label="Version switcher list">
+    {{ current_version.name }}
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list"
+       class="version-switcher__menu dropdown-menu list-group-flush py-0"
+       role="listbox"
+       aria-labelledby="pst-version-switcher-button">
+    {%- for item in versions %}
+    <a class="list-group-item list-group-item-action py-1{% if item.name == current_version.name %} active{% endif %}"
+       href="{{ item.url }}"
+       role="option">{{ item.name }}</a>
+    {%- endfor %}
+  </div>
+</div>
+{%- endif %}

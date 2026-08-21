@@ -1,10 +1,7 @@
-# import sphinx_rtd_theme
-
 project = 'FCC Tutorials'
 copyright = '2026, CERN'
 html_logo = '_static/img/fcc-logo-light.png'
 html_favicon = '_static/img/favicon.ico'
-html_theme = 'sphinx_rtd_theme'
 
 exclude_patterns = [
     'venv',
@@ -13,18 +10,28 @@ exclude_patterns = [
     'archive'
 ]
 
-html_theme = "sphinx_rtd_theme"
+html_theme = 'sphinx_book_theme'
+
+html_theme_options = {
+    'repository_url': 'https://github.com/HEP-FCC/fcc-tutorials',
+    'repository_branch': 'main',
+    'path_to_docs': '',
+    'use_repository_button': True,
+    'use_edit_page_button': True,
+    'use_issues_button': True,
+    # sphinx-multiversion version dropdown (renders only in multiversion builds)
+    'primary_sidebar_end': ['version-switcher'],
+}
 
 html_context = {
-    'display_github': True,
     'github_user': 'HEP-FCC',
     'github_repo': 'fcc-tutorials',
-    'github_version': 'main/',
+    'github_version': 'main',
+    'doc_path': '',
 }
 
 extensions = [
     'myst_parser',
-    'sphinx_rtd_theme',
     'sphinx_togglebutton',
     'sphinx_copybutton',
     'sphinx_multiversion',
