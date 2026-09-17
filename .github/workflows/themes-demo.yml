@@ -1,9 +1,10 @@
 name: Themes demo
 
-# Builds `main` and every `theme-*` branch with plain sphinx-build, each with
-# its own conf.py and requirements.txt, and publishes them side by side on
-# gh-pages under <branch>/. Unlike sphinx-multiversion, this honours the theme
-# configured on each branch.
+# Builds `main` and every `theme-*` branch, each with its own configuration
+# and requirements.txt, and publishes them side by side on gh-pages under
+# <branch>/. Branches with a `myst.yml` are built with Jupyter Book 2
+# (MyST-MD); the others with plain sphinx-build. Unlike sphinx-multiversion,
+# this honours the theme configured on each branch.
 
 on:
   push:
@@ -50,13 +51,26 @@ jobs:
     - uses: actions/setup-python@v5
       with:
         python-version: '3.12'
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '22'
     - name: Install this branch's requirements
       run: pip3 install -r requirements.txt
-    - name: Sphinx build
+    - name: Build
+      env:
+        # MyST-MD needs to know the sub-directory the site is served from
+        BASE_URL: /${{ github.event.repository.name }}/${{ matrix.branch }}
       run: |
-        sphinx-build -b html . build
-        grep -E '^html_theme[[:space:]]*=' conf.py | tail -1 \
-          | sed -E "s/^html_theme[[:space:]]*=[[:space:]]*['\"]([^'\"]+)['\"].*/\1/" > build/THEME.txt
+        if [ -f myst.yml ]; then
+          jupyter book build --html
+          mv _build/html build
+          template=$(grep -E '^[[:space:]]*template:' myst.yml | head -1 | sed -E 's/.*template:[[:space:]]*//')
+          echo "jupyter-book $(jupyter book --version | tail -1 | tr -d v) (mystmd ${template})" > build/THEME.txt
+        else
+          sphinx-build -b html . build
+          grep -E '^html_theme[[:space:]]*=' conf.py | tail -1 \
+            | sed -E "s/^html_theme[[:space:]]*=[[:space:]]*['\"]([^'\"]+)['\"].*/\1/" > build/THEME.txt
+        fi
     - uses: actions/upload-artifact@v4
       with:
         name: site-${{ matrix.branch }}
