@@ -5,3 +5,5 @@ sphinx-togglebutton==0.3.2
 sphinx-copybutton==0.5.2
 sphinx-multiversion==0.2.4
 sphinx-autobuild==2025.8.25
+sphinx-book-theme==1.1.4
+pydata-sphinx-theme==0.16.1
