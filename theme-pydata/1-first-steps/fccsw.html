@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1.4. An introduction to FCC Software &#8212; FCC Tutorials  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom-admonitions.css?v=e6bfab01" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1-first-steps/fccsw';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.5. Finding data in the Bookkeeping" href="bookkeeping.html" />
+    <link rel="prev" title="1.3. Goals of the course" href="introduction-to-course.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/fcc-logo-dark.png" class="logo__image only-light" alt="FCC Tutorials  documentation - Home"/>
+    <img src="../_static/fcc-logo-light.png" class="logo__image only-dark pst-js-only" alt="FCC Tutorials  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    First Steps
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../2-gen-and-fastsim/README.html">
+    Generation and Fast Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../3-analysis/README.html">
+    Analysis at FCC
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../4-full-detector-sim/README.html">
+    Full Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../5-distributed-computing/README.html">
+    Distributed Computing
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../6-developing-fccsw/README.html">
+    Developing FCCSW
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../7-contributing/README.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://fccsw.web.cern.ch/">
+    FCC Software
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://key4hep.web.cern.ch">
+    Key4hep
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://fcc-ee-detector-full-sim.docs.cern.ch/">
+    FCC-ee Detector Full Sim
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://hep-fcc.github.io/FCCAnalyses/">
+    FCCAnalyses
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://hsf-training.github.io/analysis-essentials/">
+    HSF Analysis essentials
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://hep-fcc.github.io/glossary">
+    FCC Software glossary
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/HEP-FCC/fcc-tutorials" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    First Steps
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../2-gen-and-fastsim/README.html">
+    Generation and Fast Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../3-analysis/README.html">
+    Analysis at FCC
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../4-full-detector-sim/README.html">
+    Full Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../5-distributed-computing/README.html">
+    Distributed Computing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../6-developing-fccsw/README.html">
+    Developing FCCSW
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../7-contributing/README.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://fccsw.web.cern.ch/">
+    FCC Software
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://key4hep.web.cern.ch">
+    Key4hep
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://fcc-ee-detector-full-sim.docs.cern.ch/">
+    FCC-ee Detector Full Sim
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://hep-fcc.github.io/FCCAnalyses/">
+    FCCAnalyses
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://hsf-training.github.io/analysis-essentials/">
+    HSF Analysis essentials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://hep-fcc.github.io/glossary">
+    FCC Software glossary
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/HEP-FCC/fcc-tutorials" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">1.1. Pre-tutorial checklist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swan.html">1.2. Running the software in SWAN notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction-to-course.html">1.3. Goals of the course</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1.4. An introduction to FCC Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bookkeeping.html">1.5. Finding data in the Bookkeeping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exploring-fcc-files.html">1.6. Inspecting an FCC data file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips-tricks.html">1.7. Tips and tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asking-questions.html">1.8. Asking good questions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="README.html" class="nav-link"><span class="section-number">1. </span>First Steps</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">1.4. </span>An introduction to FCC Software</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-fcc-software">
+<h1><span class="section-number">1.4. </span>An introduction to FCC Software<a class="headerlink" href="#an-introduction-to-fcc-software" title="Link to this heading">#</a></h1>
+<!-- contributors:start -->
+<div class="callout dropdown admonition">
+<p class="admonition-title">Page contributors</p>
+<p>Valentin Volkl, Shehu AbdusSalam, Juraj Smiesko</p>
+</div>
+<!-- contributors:end -->
+<div class="objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<ul class="simple">
+<li><p>Learn the key concepts needed to work with the FCC software</p></li>
+<li><p>Learn how to launch the FCC software with <code class="docutils literal notranslate"><span class="pre">fccrun</span></code></p></li>
+</ul>
+</div>
+<p>Imagine you want to design and run a new particle detector.
+Apart from organizing a collaboration, creating the design and specification, and several other tasks, you will also have to find solutions to many computational challenges.
+It’s worth thinking about these for a second:</p>
+<ul class="simple">
+<li><p>How do we collect data as it is recorded by the detector?</p></li>
+<li><p>How do we filter and process the recorded data efficiently?</p></li>
+<li><p>How do we manage all the complex tasks required to work with collision data?</p></li>
+<li><p>How do we organize all the data of a single bunch crossing in a flexible way?</p></li>
+<li><p>How do we configure our software flexibly without having to recompile it?</p></li>
+<li><p>Can you think of more?</p></li>
+</ul>
+<p>How would you go about solving these?
+The decisions you make will affect the performance of your experiment during datataking and analysis.</p>
+<p>At FCC, we base our software on the <a class="reference external" href="https://gaudi.web.cern.ch/gaudi/">Gaudi</a> framework, which was specifically designed with the above questions in mind.
+It’s worth getting an idea of some of the most important Gaudi concepts at this point.
+After this, we will jump right into running the software and getting useful things done.</p>
+<p><strong>Event Loop:</strong>
+Because the individual bunch crossings (events) are almost completely independent of each other, it makes sense to process them one by one, without holding them all in memory at once.
+Gaudi provides a global EventLoop, which allows you to process events one by one.</p>
+<p><strong>Transient Event Store:</strong>
+A single event contains lots of different data objects (Particles, Vertices, Tracks, Hits).
+In Gaudi, these are organized in the Transient Event Store (TES).
+You can think of it as a per-event file system with locations like <code class="docutils literal notranslate"><span class="pre">/Event/Rec/Track/Best</span></code> or <code class="docutils literal notranslate"><span class="pre">/Event/Phys/MyParticles</span></code>.
+When running over the event stream, Gaudi allows you to get and put from/to these locations.
+The contents of the TES are emptied at the end of the processing of each event.</p>
+<p><strong>Algorithms:</strong>
+An <em>Algorithm</em> is a C++ class that can be inserted into the EventLoop.
+These allow you to perform a certain function for each event (like filtering according to trigger decision, reconstructing particles).</p>
+<p><strong>Tools:</strong>
+Often, algorithms will want to make use of some common function (vertex fitting, calculating distances, associating a primary vertex).
+These are implemented as <em>Tools</em>, which are shared between Algorithms.</p>
+<p><strong>Options:</strong>
+To make all of this configurable, Gaudi allows you to set properties of <em>Algorithms</em> and <em>Tools</em> from a Python script, called an <em>option</em> file.
+In an option file, you can specify which Algorithms are run in which order, and set their properties (strings, integers, doubles, and lists and dicts of these things can be set).
+You can then start the Gaudi EventLoop using this option file, and it will set up and run the corresponding C++ objects with specified settings.</p>
+<p>You can find comprehensive documentation in the <a class="reference external" href="https://gaudi.web.cern.ch/gaudi/doxygen/v30r3/index.html">Gaudi Doxygen</a> or the <a class="reference external" href="https://gaudi.web.cern.ch/gaudi/resources/GUG.pdf">Gaudi Manual</a>.</p>
+<p>Usually, you will work with one of the FCC software framework FCCSW that are based on Gaudi.
+One of the most important ones is <em>DaVinci</em>, which provides lots of <em>Algorithms</em> and <em>Tools</em> for physics analysis.</p>
+<p>You can run gaudi using the following command <a class="reference internal" href="prerequisites.html"><span class="std std-doc">on lxplus</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/cvmfs/fcc.cern.ch/sw/latest/setup.sh
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"from Configurables import ApplicationMgr"</span><span class="w"> </span>&gt;<span class="w"> </span>option.py
+fccrun<span class="w"> </span>option.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ApplicationMgr</span></code> is a component that sets up the EventLoop.
+You should get the following output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">====================================================================================================================================</span>
+                                                   <span class="n">Welcome</span> <span class="n">to</span> <span class="n">ApplicationMgr</span> <span class="p">(</span><span class="n">GaudiCoreSvc</span> <span class="n">v32r2</span><span class="p">)</span>
+                                          <span class="n">running</span> <span class="n">on</span> <span class="n">lxplus707</span><span class="o">.</span><span class="n">cern</span><span class="o">.</span><span class="n">ch</span> <span class="n">on</span> <span class="n">Thu</span> <span class="n">Sep</span> <span class="mi">19</span> <span class="mi">14</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">08</span> <span class="mi">2019</span>
+<span class="o">====================================================================================================================================</span>
+<span class="n">ApplicationMgr</span>       <span class="n">INFO</span> <span class="n">Application</span> <span class="n">Manager</span> <span class="n">Configured</span> <span class="n">successfully</span>
+<span class="n">HistogramPersis</span><span class="o">...</span><span class="n">WARNING</span> <span class="n">Histograms</span> <span class="n">saving</span> <span class="ow">not</span> <span class="n">required</span><span class="o">.</span>
+<span class="n">ApplicationMgr</span>       <span class="n">INFO</span> <span class="n">Application</span> <span class="n">Manager</span> <span class="n">Initialized</span> <span class="n">successfully</span>
+<span class="n">ApplicationMgr</span>       <span class="n">INFO</span> <span class="n">Application</span> <span class="n">Manager</span> <span class="n">Started</span> <span class="n">successfully</span>
+<span class="n">EventSelector</span>        <span class="n">INFO</span> <span class="n">End</span> <span class="n">of</span> <span class="n">event</span> <span class="nb">input</span> <span class="n">reached</span><span class="o">.</span>
+<span class="n">EventLoopMgr</span>         <span class="n">INFO</span> <span class="n">No</span> <span class="n">more</span> <span class="n">events</span> <span class="ow">in</span> <span class="n">event</span> <span class="n">selection</span> 
+<span class="n">ApplicationMgr</span>       <span class="n">INFO</span> <span class="n">Application</span> <span class="n">Manager</span> <span class="n">Stopped</span> <span class="n">successfully</span>
+<span class="n">EventLoopMgr</span>         <span class="n">INFO</span> <span class="n">Histograms</span> <span class="n">converted</span> <span class="n">successfully</span> <span class="n">according</span> <span class="n">to</span> <span class="n">request</span><span class="o">.</span>
+<span class="n">ToolSvc</span>              <span class="n">INFO</span> <span class="n">Removing</span> <span class="nb">all</span> <span class="n">tools</span> <span class="n">created</span> <span class="n">by</span> <span class="n">ToolSvc</span>
+<span class="n">ApplicationMgr</span>       <span class="n">INFO</span> <span class="n">Application</span> <span class="n">Manager</span> <span class="n">Finalized</span> <span class="n">successfully</span>
+<span class="n">ApplicationMgr</span>       <span class="n">INFO</span> <span class="n">Application</span> <span class="n">Manager</span> <span class="n">Terminated</span> <span class="n">successfully</span>
+</pre></div>
+</div>
+<p>During this run, FCCSW didn’t do anything: We didn’t specify any algorithms to run or any data to run over.</p>
+<p>An <code class="docutils literal notranslate"><span class="pre">option.py</span></code> is just a regular Python script that specifies how to set things up in the software.
+Many of the following lessons will teach you how to do something with FCCSW by showing you how to write or extend an <code class="docutils literal notranslate"><span class="pre">options.py</span></code>.
+You can use the above command to test it.
+You can also specify several option files like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fccrun</span> <span class="n">options1</span><span class="o">.</span><span class="n">py</span> <span class="n">options2</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>They will then both be used to set up FCCSW.</p>
+<p>Do you want to get an overview of which Components of FCCSW exist? Use</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fccrun<span class="w"> </span>--list
+</pre></div>
+</div>
+<p>You can then look components up on <a class="reference external" href="https://github.com/HEP-FCC/FCCSW">github</a> to find more information.
+However, it is advised to follow this tutorial, as many of the components are introduced here and used in example jobs.</p>
+<div class="callout admonition">
+<p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">fccrun</span></code> and command line arguments</p>
+<p><code class="docutils literal notranslate"><span class="pre">fccrun</span></code> is a wrapper around a gaudi script called <code class="docutils literal notranslate"><span class="pre">gaudirun.py</span></code>. <code class="docutils literal notranslate"><span class="pre">fccrun</span></code> makes it easier to configure jobs on the command line. It is a dynamic script, i.e. it command line options depend on the options file and let you modify <code class="docutils literal notranslate"><span class="pre">options.py</span></code> without opening an editor.
+Take a look at the example job to run Pythia8:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>less<span class="w"> </span><span class="nv">$FCCSW</span>/Examples/options/pythia.py
+</pre></div>
+</div>
+<p>and compare it with the command line options for fccrun:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>fccrun<span class="w"> </span><span class="nv">$FCCSW</span>/Examples/options/pythia.py<span class="w"> </span>-h
+</pre></div>
+</div>
+<p>And note that you have to give an <code class="docutils literal notranslate"><span class="pre">options.py</span></code> as the first argument to <code class="docutils literal notranslate"><span class="pre">fccrun</span></code> in order for this to work:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>fccrun<span class="w"> </span>-h
+</pre></div>
+</div>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="introduction-to-course.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.3. </span>Goals of the course</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bookkeeping.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.5. </span>Finding data in the Bookkeeping</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/HEP-FCC/fcc-tutorials/edit/main/1-first-steps/fccsw.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/1-first-steps/fccsw.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, CERN.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

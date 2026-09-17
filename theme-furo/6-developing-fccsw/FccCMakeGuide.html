@@ -1,0 +1,570 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="6.3. Writing Gaudi Algorithms" href="WritingAlgorithms.html"><link rel="prev" title="6.1. Github workflow and contribution guide" href="FccSoftwareGit.html">
+        <link rel="prefetch" href="../_static/img/fcc-logo-dark.png" as="image">
+        <link rel="prefetch" href="../_static/img/fcc-logo-light.png" as="image">
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"><!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
+        <title>6.2. CMake guide for the FCC software - FCC Tutorials documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom-admonitions.css?v=f8c4505d" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">FCC Tutorials  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../_static/img/fcc-logo-dark.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../_static/img/fcc-logo-light.png" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">FCC Tutorials  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1-first-steps/README.html">1. First Steps</a><input aria-label="Toggle navigation of 1. First Steps" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/prerequisites.html">1.1. Pre-tutorial checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/swan.html">1.2. Running the software in SWAN notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/introduction-to-course.html">1.3. Goals of the course</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/fccsw.html">1.4. An introduction to FCC Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/bookkeeping.html">1.5. Finding data in the Bookkeeping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/exploring-fcc-files.html">1.6. Inspecting an FCC data file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/tips-tricks.html">1.7. Tips and tricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/asking-questions.html">1.8. Asking good questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-gen-and-fastsim/README.html">2. Generation and Fast Simulation</a><input aria-label="Toggle navigation of 2. Generation and Fast Simulation" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-gen-and-fastsim/2-1-event-generation/README.html">2.1. Getting Started with Event Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-gen-and-fastsim/2-2-fastsim-delphes/README.html">2.2. Getting Started with Fast Simulation in Delphes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-gen-and-fastsim/2-4-eedE/README.html">2.3. EDM4hep Event Data Explorer: eedE</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3-analysis/README.html">3. Analysis at FCC</a><input aria-label="Toggle navigation of 3. Analysis at FCC" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3-analysis/3-1-higgs-analysis/README.html">3.1. Getting Started: Higgs Mass Analysis with FCCAnalyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-analysis/3-2-tracking-vertexing/README.html">3.2. Beyond the Basics: Tracking and Vertexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-analysis/3-3-useful-info/README.html">3.3. Some Useful Info on EDM4hep, Analyzers, and More</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4-full-detector-sim/README.html">4. Full Simulation</a><input aria-label="Toggle navigation of 4. Full Simulation" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/FCCeeGeneralOverview/FCCeeGeneralOverview.html">4.1. FCC-ee Full Sim General Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/FCCeeGuineaPigIRBackgrounds/README.html">4.2. Using Guinea-Pig to generate interaction region backgrounds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/Geometry/Geometry.html">4.3. Changing geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/Visualization/Visualization.html">4.4. Visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../5-distributed-computing/README.html">5. Distributed Computing</a><input aria-label="Toggle navigation of 5. Distributed Computing" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../5-distributed-computing/EventProducer.html">5.1. EventProducer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5-distributed-computing/RegisteringToFccVO.html">5.2. Getting started with FCC distributed computing</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../5-distributed-computing/Workflows.html">5.3. FCC DIRAC Example Workflows</a><input aria-label="Toggle navigation of 5.3. FCC DIRAC Example Workflows" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../5-distributed-computing/workflows/Overview.html">5.3.1. Overview of the job submission script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../5-distributed-computing/workflows/01/DiTauKKMCeeDelphesStandAlone.html">5.3.2. Workflow 1: Ditau with KKMCee + Delphes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../5-distributed-computing/OutputStructure.html">5.4. Structure for /eos/experiment/fcc/prod</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="README.html">6. Developing FCCSW</a><input aria-label="Toggle navigation of 6. Developing FCCSW" checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FccSoftwareGit.html">6.1. Github workflow and contribution guide</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">6.2. CMake guide for the FCC software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WritingAlgorithms.html">6.3. Writing Gaudi Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DevelopingDD4hep.html">6.4. Developing DD4hep Detector models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Edm4hepTransition.html">6.5. Guide to the Transition of FCCSW to EDM4hep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FccDocPage.html">6.6. Writing documentation for the FCC Software</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../7-contributing/README.html">7. Contributing</a><input aria-label="Toggle navigation of 7. Contributing" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../7-contributing/CONDUCT.html">7.4.1. Contributor Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7-contributing/LICENSE.html">7.4.2. License</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">External links:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://fccsw.web.cern.ch/">FCC Software</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://key4hep.web.cern.ch">Key4hep</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://fcc-ee-detector-full-sim.docs.cern.ch/">FCC-ee Detector Full Sim</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hep-fcc.github.io/FCCAnalyses/">FCCAnalyses</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hsf-training.github.io/analysis-essentials/">HSF Analysis essentials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hep-fcc.github.io/glossary">FCC Software glossary</a></li>
+</ul>
+
+</div></div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/HEP-FCC/fcc-tutorials/blob/main/6-developing-fccsw/FccCMakeGuide.md?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/HEP-FCC/fcc-tutorials/edit/main/6-developing-fccsw/FccCMakeGuide.md" rel="edit" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="cmake-guide-for-the-fcc-software">
+<h1><span class="section-number">6.2. </span>CMake guide for the FCC software<a class="headerlink" href="#cmake-guide-for-the-fcc-software" title="Link to this heading">¶</a></h1>
+<!-- contributors:start -->
+<div class="callout dropdown admonition">
+<p class="admonition-title">Page contributors</p>
+<p>Joschka Lingemann, Valentin Volkl, Juraj Smiesko</p>
+</div>
+<!-- contributors:end -->
+<section id="overview">
+<h2><span class="section-number">6.2.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>CMake is a tool for building software, which has become the de-facto
+standard outside HEP. In HEP, it is for example used by the ILC/CLIC
+communities and by the LHCb collaboration. For CMS people, CMake is the
+equivalent of scram. In FCCSW, CMake is used mainly via Gaudi macros, which are however fairly similar to plain CMake commands in syntax.</p>
+<p>This <a class="reference external" href="https://twiki.cern.ch/twiki/bin/view/LHCb/GaudiCMakeConfiguration">LHCb Twiki</a> has some additional information on
+various Gaudi CMake functions.</p>
+</section>
+<section id="quick-start-into-building-fccsw">
+<h2><span class="section-number">6.2.2. </span>Quick start into building FCCSW<a class="headerlink" href="#quick-start-into-building-fccsw" title="Link to this heading">¶</a></h2>
+<section id="set-up-the-environment">
+<h3><span class="section-number">6.2.2.1. </span>Set up the environment<a class="headerlink" href="#set-up-the-environment" title="Link to this heading">¶</a></h3>
+<p>In case you are unsure, it is best to use the <code class="docutils literal notranslate"><span class="pre">init.sh</span></code> script provided with FCCSW:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>source ./init.sh`
+</pre></div>
+</div>
+<p>Note that mixing setup scripts (from another package, for example) may or may not work as intended - more likely not.
+For any requests to changes in the environment, feel free to contact the software team on the mailing list or any other channels.
+Developers may also look into <code class="docutils literal notranslate"><span class="pre">spack</span></code> to have more fine-grained control over the build dependencies.</p>
+</section>
+<section id="using-the-top-level-makefile">
+<h3><span class="section-number">6.2.2.2. </span>Using the top-level Makefile<a class="headerlink" href="#using-the-top-level-makefile" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The software can be compiled in the root directory with <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j8</span></code>.</p></li>
+<li><p>After adding new files, do <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">configure</span></code></p></li>
+<li><p>Building single packages: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">packagename</span></code></p></li>
+<li><p>Cleaning up (rebuild from scratch): <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">purge</span></code></p></li>
+<li><p>To change the build-type (e.g. Release or Debug), set the <code class="docutils literal notranslate"><span class="pre">BUILDTYPE</span></code> variable (e.g. <code class="docutils literal notranslate"><span class="pre">BUILDTYPE=Debug</span> <span class="pre">make</span></code>)</p></li>
+</ul>
+</section>
+<section id="using-plain-cmake">
+<h3><span class="section-number">6.2.2.3. </span>Using plain CMake<a class="headerlink" href="#using-plain-cmake" title="Link to this heading">¶</a></h3>
+<p>The steps that the top-level Makefile does can also be done manually:</p>
+<ul class="simple">
+<li><p>Create a build directory: <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">build;</span> <span class="pre">cd</span> <span class="pre">build</span></code></p></li>
+<li><p>Run CMake in the build directory: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">..</span> </code></p></li>
+<li><p>Change any cmake options by rerunning cmake. For example: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">..</span> <span class="pre">-DCMAKE_INSTALL_PREFIX=install</span></code>. Tools like ccmake may also be useful: <code class="docutils literal notranslate"><span class="pre">ccmake</span> <span class="pre">..</span></code></p></li>
+<li><p>Compile the software, using all the cpus available:    <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j</span> <span class="pre">`getconf</span> <span class="pre">_NPROCESSORS_ONLN`</span> </code></p></li>
+<li><p>Install by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code></p></li>
+<li><p>In case any dependency is changed, most likely you need to remove all the contents of the build folder and rerun cmake and the compilation.</p></li>
+</ul>
+</section>
+</section>
+<section id="cmake-example-packages">
+<h2><span class="section-number">6.2.3. </span>CMake example packages<a class="headerlink" href="#cmake-example-packages" title="Link to this heading">¶</a></h2>
+<p>Colin provides <a class="reference external" href="https://github.com/cbernet/cmake-examples">a few simple CMake
+examples</a> independent from
+the FCC software framework. They are helpful to understand the basics of
+CMake.</p>
+<p>Get these packages:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/cbernet/cmake-examples.git
+cd cmake-examples
+</pre></div>
+</div>
+<p>Follow the instructions in
+<a class="reference external" href="https://github.com/cbernet/cmake-examples/blob/master/README.md">README.md</a>.</p>
+</section>
+<section id="cmake-in-the-fcc-software-framework">
+<h2><span class="section-number">6.2.4. </span>CMake in the FCC software framework<a class="headerlink" href="#cmake-in-the-fcc-software-framework" title="Link to this heading">¶</a></h2>
+<p>The FCC software framework is split into single packages <code class="docutils literal notranslate"><span class="pre">Generation</span></code>, <code class="docutils literal notranslate"><span class="pre">Examples</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulation</span></code> , …. Each of these packages contains
+the file <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>, defining its content. To build the entire
+SW, a Makefile is provided in the top level directory, so <code class="docutils literal notranslate"><span class="pre">make</span></code> can be invoked there to build FCCSW. To rebuild a single package
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">packagename</span></code> is sufficient.</p>
+<p>Note that single subdirectory cannot be installed individually at the moment.
+If you need to install, it is best to compile everything in the beginning (which may take a while), and then work with the build folder. Any changes should only lead to the changed subdirectories being recompiled.</p>
+<p>When adding new source files to a package, the CMake build system needs
+to be made aware of them. Usually <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> contains a wildcard
+expression that adds all implementation files in a subfolder, e.g.
+<code class="docutils literal notranslate"><span class="pre">src/*.cpp</span></code> , so there is no need to explicitly add the names of the
+new files. To update the list of files, it is fastest to run
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">configure</span></code> .</p>
+<p>Note that when changing the name of a property of an algorithm or a
+tool, <code class="docutils literal notranslate"><span class="pre">make</span></code> (and not only <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">packagename</span></code> ) needs to be run for
+Gaudi to be aware of the change.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">make</span></code> command creates a directory <code class="docutils literal notranslate"><span class="pre">build.xxxx</span></code> where <code class="docutils literal notranslate"><span class="pre">xxxx</span></code> depends on your platform and compiler. All build files
+are writtin in that directory. There are situations where you need to clean this build folder before you can
+successfully build the software:</p>
+<ul class="simple">
+<li><p>The FCCSW environment changed (version change)</p></li>
+<li><p>Fetching changes from other users or the HEP-FCC repository with deleted files</p></li>
+</ul>
+<p>In those cases you’ll need to do <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">purge</span></code> (this target deletes the build and install directories) and rebuild the
+entire software.</p>
+<section id="runtime-environment">
+<h3><span class="section-number">6.2.4.1. </span>Runtime Environment<a class="headerlink" href="#runtime-environment" title="Link to this heading">¶</a></h3>
+<p>FCCSW consists of executables, headers, scripts, dynamic libraries, xmls  and special files describing gaudi components.
+In order to use these, some environment variables need to be set.
+FCCSW includes a setup script that is installed automatically and can be sourced to set up the required variables.</p>
+<p>Gaudi also offers the possibility to set up the environment via the <code class="docutils literal notranslate"><span class="pre">xenv</span></code> command. This is done by simply prefixing the command you want to run with the <code class="docutils literal notranslate"><span class="pre">run</span></code> script in the top level directory of FCCSW, or directly in the build directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./build/run<span class="w"> </span>fccrun<span class="w"> </span>Examples/options/pythia.py
+</pre></div>
+</div>
+<p>Sometimes it is convenient to run FCCSW directly from the binaries in the build directory without installing them.
+This can be done by using the <code class="docutils literal notranslate"><span class="pre">run</span></code> script in the build directory, or setting the environment variables as in <code class="docutils literal notranslate"><span class="pre">setup.sh</span></code> for the build folder.
+Note that the directories in the  build folder differ a bit. Mostly it is important the the LD_LIBRARY_PATH is pre-fixed with the library directories. The fccrun command should pick up the components from the build folder then.</p>
+</section>
+</section>
+<section id="ctest-in-fccsw">
+<h2><span class="section-number">6.2.5. </span>CTest in FCCSW<a class="headerlink" href="#ctest-in-fccsw" title="Link to this heading">¶</a></h2>
+<p>FCCSW also uses the cmake for integration tests.
+This is described in detail in the documentation page on <a class="reference external" href="https://github.com/HEP-FCC/FCCSW/blob/master/doc/AddingTestsToFCCSW.md">adding tests to FCCSW</a>.</p>
+</section>
+<section id="using-an-internal-library">
+<h2><span class="section-number">6.2.6. </span>Using an internal library<a class="headerlink" href="#using-an-internal-library" title="Link to this heading">¶</a></h2>
+<p>Libraries are the main tool to avoid code duplication, i.e. make pieces of code available in other parts of the framework.
+Once Gaudi is notified that a certain subdirectory is needed by invoking <code class="docutils literal notranslate"><span class="pre">gaudi_depends_on_subdir</span></code>, internal libraries defined in this subdirectory can be used by simply adding them to the list of <code class="docutils literal notranslate"><span class="pre">INCLUDE_DIRS</span></code> and <code class="docutils literal notranslate"><span class="pre">LINK_LIBRARIES</span></code>. An example would be the way the internal library <code class="docutils literal notranslate"><span class="pre">DetCommon</span></code> is used by the module  <a class="reference external" href="https://github.com/HEP-FCC/FCCSW/blob/master/Test/TestGeometry/CMakeLists.txt"><code class="docutils literal notranslate"><span class="pre">Test/TestGeometryPlugins</span></code></a>  in FCCSW.
+The required changes to use the <code class="docutils literal notranslate"><span class="pre">DetCommon</span></code> library are</p>
+<ul class="simple">
+<li><p>declare the dependency on the subdirectory <code class="docutils literal notranslate"><span class="pre">Detector/DetCommon</span></code></p></li>
+<li><p>add the <code class="docutils literal notranslate"><span class="pre">DetCommon</span></code> headers by adding <code class="docutils literal notranslate"><span class="pre">DetCommon</span></code> to the <code class="docutils literal notranslate"><span class="pre">INCLUDE_DIRS</span></code> line</p></li>
+<li><p>link the <code class="docutils literal notranslate"><span class="pre">DetCommon</span></code> libraries by adding <code class="docutils literal notranslate"><span class="pre">DetCommon</span></code> to the <code class="docutils literal notranslate"><span class="pre">LINK_LIBRARIES</span></code> line.</p></li>
+</ul>
+</section>
+<section id="building-a-new-gaudi-module">
+<h2><span class="section-number">6.2.7. </span>Building a new Gaudi module<a class="headerlink" href="#building-a-new-gaudi-module" title="Link to this heading">¶</a></h2>
+<p>A more general introduction to Gaudi modules and the differences with respect to libraries can be found in the <a class="reference external" href="https://twiki.cern.ch/twiki/bin/view/LHCb/GaudiCMakeConfiguration#Building_a_Module_AKA_component">LHCb twiki</a>.
+The best way is to look at existing modules in FCCSW for inspiration. The syntax to declare the module <a class="reference external" href="https://github.com/HEP-FCC/FCCSW/blob/master/Test/TestGeometry/CMakeLists.txt"><code class="docutils literal notranslate"><span class="pre">TestGeometryPlugins</span></code></a>, for example, is:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">gaudi_add_module</span><span class="p">(</span><span class="s">TestGeometryPlugins</span>
+<span class="w">                 </span><span class="s">src/components/*.cpp</span>
+<span class="w">                 </span><span class="s">INCLUDE_DIRS</span><span class="w"> </span><span class="s">Geant4</span><span class="w"> </span><span class="s">FWCore</span><span class="w"> </span><span class="s">SimG4Interface</span><span class="w"> </span><span class="s">SimG4Common</span><span class="w"> </span><span class="s">DetInterface</span><span class="w"> </span><span class="s">DetCommon</span><span class="w"> </span><span class="s">TestGeometry</span>
+<span class="w">                 </span><span class="s">LINK_LIBRARIES</span><span class="w"> </span><span class="s">GaudiKernel</span><span class="w"> </span><span class="s">FWCore</span><span class="w"> </span><span class="s">Geant4</span><span class="w"> </span><span class="s">DetCommon</span><span class="w"> </span><span class="s">TestGeometry</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-an-external-library">
+<h2><span class="section-number">6.2.8. </span>Using an external library<a class="headerlink" href="#using-an-external-library" title="Link to this heading">¶</a></h2>
+<p>This can be done using the standard cmake command <a class="reference external" href="https://cmake.org/cmake/help/v3.0/command/find_package.html">find_package</a>. See <a class="reference external" href="https://github.com/cbernet/cmake-examples">Colins CMake examples</a> for details.</p>
+<p>Sometimes external libraries require special treatment, and their documentation needs to be consulted. One known case is DD4hep, for which in some cases the CMake variable <code class="docutils literal notranslate"><span class="pre">${DD4hep_COMPONENT_LIBRARIES}</span></code> needs to be used in the <code class="docutils literal notranslate"><span class="pre">LINK_LIBRARIES</span></code> line (if the DDRec or DDSegmentation package is used). Example:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">gaudi_add_library</span><span class="p">(</span><span class="s">DetCommon</span>
+<span class="w">                 </span><span class="s">src/*.cpp</span>
+<span class="w">                 </span><span class="s">INCLUDE_DIRS</span><span class="w"> </span><span class="s">DD4hep</span><span class="w"> </span><span class="s">ROOT</span><span class="w"> </span><span class="s">Geant4</span><span class="w"> </span><span class="s">DetSegmentation</span>
+<span class="w">                 </span><span class="s">LINK_LIBRARIES</span><span class="w"> </span><span class="s">GaudiKernel</span><span class="w"> </span><span class="s">DD4hep</span><span class="w"> </span><span class="s">ROOT</span><span class="w"> </span><span class="s">Geant4</span><span class="w"> </span><span class="s">DetSegmentation</span><span class="w"> </span><span class="o">${</span><span class="nv">DD4hep_COMPONENT_LIBRARIES</span><span class="o">}</span>
+<span class="w">                 </span><span class="s">PUBLIC_HEADERS</span><span class="w"> </span><span class="s">DetCommon</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>ROOT is needed in many modules of FCCSW. More information how to use it in a CMake-based project is available on the <a class="reference external" href="https://root.cern.ch/how/integrate-root-my-project-cmake">ROOT website</a>.</p>
+<section id="customizing-how-cmake-is-run">
+<h3><span class="section-number">6.2.8.1. </span>Customizing how CMake is run<a class="headerlink" href="#customizing-how-cmake-is-run" title="Link to this heading">¶</a></h3>
+<p>An environment variable is used to forward command line arguments to the cmake command, for example to run cmake with the <code class="docutils literal notranslate"><span class="pre">trace</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CMAKEFLAGS</span><span class="o">=</span><span class="s1">'--trace'</span> <span class="n">make</span>
+</pre></div>
+</div>
+<div class="callout admonition">
+<p class="admonition-title">How do I check compilation flags?</p>
+<p>Instead of running <code class="docutils literal notranslate"><span class="pre">make</span></code>, run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span><span class="nv">VERBOSE</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="WritingAlgorithms.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><span class="section-number">6.3. </span>Writing Gaudi Algorithms</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="FccSoftwareGit.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><span class="section-number">6.1. </span>Github workflow and contribution guide</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, CERN
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">6.2. CMake guide for the FCC software</a><ul>
+<li><a class="reference internal" href="#overview">6.2.1. Overview</a></li>
+<li><a class="reference internal" href="#quick-start-into-building-fccsw">6.2.2. Quick start into building FCCSW</a><ul>
+<li><a class="reference internal" href="#set-up-the-environment">6.2.2.1. Set up the environment</a></li>
+<li><a class="reference internal" href="#using-the-top-level-makefile">6.2.2.2. Using the top-level Makefile</a></li>
+<li><a class="reference internal" href="#using-plain-cmake">6.2.2.3. Using plain CMake</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cmake-example-packages">6.2.3. CMake example packages</a></li>
+<li><a class="reference internal" href="#cmake-in-the-fcc-software-framework">6.2.4. CMake in the FCC software framework</a><ul>
+<li><a class="reference internal" href="#runtime-environment">6.2.4.1. Runtime Environment</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ctest-in-fccsw">6.2.5. CTest in FCCSW</a></li>
+<li><a class="reference internal" href="#using-an-internal-library">6.2.6. Using an internal library</a></li>
+<li><a class="reference internal" href="#building-a-new-gaudi-module">6.2.7. Building a new Gaudi module</a></li>
+<li><a class="reference internal" href="#using-an-external-library">6.2.8. Using an external library</a><ul>
+<li><a class="reference internal" href="#customizing-how-cmake-is-run">6.2.8.1. Customizing how CMake is run</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    </body>
+</html>

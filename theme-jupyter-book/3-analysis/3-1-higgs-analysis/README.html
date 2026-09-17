@@ -1,0 +1,680 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.1. Getting Started: Higgs Mass Analysis with FCCAnalyses &#8212; FCC Tutorials  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom-admonitions.css?v=e6bfab01" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3-analysis/3-1-higgs-analysis/README';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.2. Beyond the Basics: Tracking and Vertexing" href="../3-2-tracking-vertexing/README.html" />
+    <link rel="prev" title="3. Analysis at FCC" href="../README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/fcc-logo-dark.png" class="logo__image only-light" alt="FCC Tutorials  documentation - Home"/>
+    <script>document.write(`<img src="../../_static/fcc-logo-light.png" class="logo__image only-dark" alt="FCC Tutorials  documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../1-first-steps/README.html">1. First Steps</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../1-first-steps/prerequisites.html">1.1. Pre-tutorial checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-first-steps/swan.html">1.2. Running the software in SWAN notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-first-steps/introduction-to-course.html">1.3. Goals of the course</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-first-steps/fccsw.html">1.4. An introduction to FCC Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-first-steps/bookkeeping.html">1.5. Finding data in the Bookkeeping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-first-steps/exploring-fcc-files.html">1.6. Inspecting an FCC data file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-first-steps/tips-tricks.html">1.7. Tips and tricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../1-first-steps/asking-questions.html">1.8. Asking good questions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2-gen-and-fastsim/README.html">2. Generation and Fast Simulation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2-gen-and-fastsim/2-1-event-generation/README.html">2.1. Getting Started with Event Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2-gen-and-fastsim/2-2-fastsim-delphes/README.html">2.2. Getting Started with Fast Simulation in Delphes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2-gen-and-fastsim/2-4-eedE/README.html">2.3. EDM4hep Event Data Explorer: eedE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">3. Analysis at FCC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Getting Started: Higgs Mass Analysis with FCCAnalyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-2-tracking-vertexing/README.html">3.2. Beyond the Basics: Tracking and Vertexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-3-useful-info/README.html">3.3. Some Useful Info on EDM4hep, Analyzers, and More</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../4-full-detector-sim/README.html">4. Full Simulation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../4-full-detector-sim/FCCeeGeneralOverview/FCCeeGeneralOverview.html">4.1. FCC-ee Full Sim General Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../4-full-detector-sim/FCCeeGuineaPigIRBackgrounds/README.html">4.2. Using Guinea-Pig to generate interaction region backgrounds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../4-full-detector-sim/Geometry/Geometry.html">4.3. Changing geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../4-full-detector-sim/Visualization/Visualization.html">4.4. Visualization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../5-distributed-computing/README.html">5. Distributed Computing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../5-distributed-computing/EventProducer.html">5.1. EventProducer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../5-distributed-computing/RegisteringToFccVO.html">5.2. Getting started with FCC distributed computing</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../5-distributed-computing/Workflows.html">5.3. FCC DIRAC Example Workflows</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../5-distributed-computing/workflows/Overview.html">5.3.1. Overview of the job submission script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../5-distributed-computing/workflows/01/DiTauKKMCeeDelphesStandAlone.html">5.3.2. Workflow 1: Ditau with KKMCee + Delphes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../5-distributed-computing/OutputStructure.html">5.4. Structure for /eos/experiment/fcc/prod</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../6-developing-fccsw/README.html">6. Developing FCCSW</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../6-developing-fccsw/FccSoftwareGit.html">6.1. Github workflow and contribution guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../6-developing-fccsw/FccCMakeGuide.html">6.2. CMake guide for the FCC software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../6-developing-fccsw/WritingAlgorithms.html">6.3. Writing Gaudi Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../6-developing-fccsw/DevelopingDD4hep.html">6.4. Developing DD4hep Detector models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../6-developing-fccsw/Edm4hepTransition.html">6.5. Guide to the Transition of FCCSW to EDM4hep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../6-developing-fccsw/FccDocPage.html">6.6. Writing documentation for the FCC Software</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../7-contributing/README.html">7. Contributing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../7-contributing/CONDUCT.html">7.4.1. Contributor Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../7-contributing/LICENSE.html">7.4.2. License</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External links:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://fccsw.web.cern.ch/">FCC Software</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://key4hep.web.cern.ch">Key4hep</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://fcc-ee-detector-full-sim.docs.cern.ch/">FCC-ee Detector Full Sim</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hep-fcc.github.io/FCCAnalyses/">FCCAnalyses</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hsf-training.github.io/analysis-essentials/">HSF Analysis essentials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hep-fcc.github.io/glossary">FCC Software glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/HEP-FCC/fcc-tutorials" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/HEP-FCC/fcc-tutorials/edit/main/3-analysis/3-1-higgs-analysis/README.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/HEP-FCC/fcc-tutorials/issues/new?title=Issue%20on%20page%20%2F3-analysis/3-1-higgs-analysis/README.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/3-analysis/3-1-higgs-analysis/README.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Getting Started: Higgs Mass Analysis with FCCAnalyses</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-recoil-mass-analysis-and-histograms-in-a-single-step">3.1.1. Part I - Recoil Mass: Analysis and Histograms in a Single Step</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-jet-flavor-producing-a-flat-ntuple-tree-before-creating-histograms-and-plots">3.1.2. Part II - Jet Flavor: Producing a flat ntuple tree before creating histograms and plots</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started-higgs-mass-analysis-with-fccanalyses">
+<h1><span class="section-number">3.1. </span>Getting Started: Higgs Mass Analysis with FCCAnalyses<a class="headerlink" href="#getting-started-higgs-mass-analysis-with-fccanalyses" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>Original author: Michele Selvaggi</p>
+</div></blockquote>
+<p>Let’s first clone and build <code class="docutils literal notranslate"><span class="pre">FCCAnalyses</span></code> with the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>master<span class="w"> </span>https://github.com/HEP-FCC/FCCAnalyses.git
+<span class="nb">cd</span><span class="w"> </span>FCCAnalyses
+<span class="nb">source</span><span class="w"> </span>./setup.sh
+fccanalysis<span class="w"> </span>build<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+<p>and create a directory containing this tutorial:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>..
+mkdir<span class="w"> </span>tutorial<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>tutorial
+</pre></div>
+</div>
+<p>Copy the necessary files, either from the web or from some location where the
+files were produced locally</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>localSamples<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>localSamples
+mkdir<span class="w">  </span>p8_ee_WW_mumu_ecm240<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>p8_ee_WW_mumu_ecm240
+wget<span class="w"> </span>https://fccsw.web.cern.ch/tutorials/ana-sim-evt/p8_ee_WW_mumu_ecm240/p8_ee_WW_mumu_ecm240_edm4hep.root
+<span class="nb">cd</span><span class="w"> </span>..
+mkdir<span class="w"> </span>p8_ee_ZZ_mumubb_ecm240<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>p8_ee_ZZ_mumubb_ecm240
+wget<span class="w"> </span>https://fccsw.web.cern.ch/tutorials/ana-sim-evt/p8_ee_ZZ_mumubb_ecm240/p8_ee_ZZ_mumubb_ecm240_edm4hep.root
+<span class="nb">cd</span><span class="w"> </span>..
+mkdir<span class="w"> </span>p8_ee_ZH_Zmumu_ecm240<span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>p8_ee_ZH_Zmumu_ecm240
+wget<span class="w"> </span>https://fccsw.web.cern.ch/tutorials/ana-sim-evt/p8_ee_ZH_Zmumu_ecm240/p8_ee_ZH_Zmumu_ecm240_edm4hep.root
+<span class="nb">cd</span><span class="w"> </span>../..
+</pre></div>
+</div>
+<p>This tutorial consists in two parts. Both parts will make use of ee-&gt;ZH (Z-&gt;mumu)events, with its relevant backgrounds ee-&gt;WW and ee-&gt;ZZ:</p>
+<ul class="simple">
+<li><p>in <strong>Part I</strong> you will construct the recoil mass observable and apply a list of pre-selection cuts.</p></li>
+<li><p>in <strong>Part II</strong> you will learn how to run an exclusive jet clustering algorithm, evaluate the various jet flavor probabilities and use them to select H-&gt;bb events.</p></li>
+</ul>
+<div class="objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>In this first example, you will learn how to:</p>
+<ul class="simple">
+<li><p>read the <strong>edm4hep</strong> data format and construct physics observable (such as the recoil mass)</p></li>
+<li><p>define C++ helper functions in a separate that will be compiled at run time</p></li>
+<li><p>apply an <strong>event selection</strong> and <strong>fill histograms</strong> in a single iteration using the <strong>histmaker</strong> option.</p></li>
+<li><p>produce <strong>flat ntuples</strong> with observables of interest with <strong>FCCAnalyses</strong></p></li>
+<li><p>produce plots with the <strong>plot</strong> option.</p></li>
+</ul>
+</div>
+<section id="part-i-recoil-mass-analysis-and-histograms-in-a-single-step">
+<h2><span class="section-number">3.1.1. </span>Part I - Recoil Mass: Analysis and Histograms in a Single Step<a class="headerlink" href="#part-i-recoil-mass-analysis-and-histograms-in-a-single-step" title="Link to this heading">#</a></h2>
+<p>Start by downloading this file called <a class="reference download internal" download="" href="../../_downloads/986526d3cfa19c3d6c3e33fea307f983/functions.h"><span class="xref download myst">functions.h</span></a>. This contains C++ helper functions that you will need to compute observables with RDataframe.</p>
+<p>Next, download the <a class="reference download internal" download="" href="../../_downloads/ac0edc5234be80478859f8e500ecb953/histmaker_recoil.py"><span class="xref download myst">histmaker_recoil.py</span></a> script, which processes the previously produced ROOT samples, reconstructs muon and Z candidates, applies a sequence of event-selection cuts, and produces a set of histograms.</p>
+<p>The script first defines the input/output paths, luminosity scaling, and histogram binning. The main analysis logic is implemented in the <code class="docutils literal notranslate"><span class="pre">build_graph</span></code> function: reconstructed muons are selected and isolated muons with <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">&gt;</span> <span class="pre">20</span> <span class="pre">GeV</span></code> are retained. The analysis then applies successive cuts, including opposite-sign muon selection, Z-boson candidate reconstruction, Z mass and momentum requirements, missing-energy selection, and finally a recoil-mass window to suppress background processes.</p>
+<p>Before running the script, update the <code class="docutils literal notranslate"><span class="pre">inputDir</span></code> variable so it points to the directory containing your local samples; the output histograms will be written to <code class="docutils literal notranslate"><span class="pre">outputDir</span></code>. Finally, run the histmaker script using the fccanalysis <code class="docutils literal notranslate"><span class="pre">run</span></code> parameter to generate a ROOT file containing the resulting TH1 histograms:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fccanalysis<span class="w"> </span>run<span class="w"> </span>histmaker_recoil.py
+</pre></div>
+</div>
+<p>Now download the the plotting script <a class="reference download internal" download="" href="../../_downloads/12eab38e5801a137408551c2c7aadc66/plots_recoil.py"><span class="xref download myst">plots_recoil.py</span></a> and run it using the fccanalysis <code class="docutils literal notranslate"><span class="pre">plots</span></code> parameter:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fccanalysis<span class="w"> </span>plots<span class="w"> </span>plots_recoil.py
+</pre></div>
+</div>
+<p>Please note that the event statistics is not great because we only produced on 10 000 events in the <code class="docutils literal notranslate"><span class="pre">Delphes</span> <span class="pre">Fast</span> <span class="pre">Simulation</span></code> step.</p>
+</section>
+<section id="part-ii-jet-flavor-producing-a-flat-ntuple-tree-before-creating-histograms-and-plots">
+<h2><span class="section-number">3.1.2. </span>Part II - Jet Flavor: Producing a flat ntuple tree before creating histograms and plots<a class="headerlink" href="#part-ii-jet-flavor-producing-a-flat-ntuple-tree-before-creating-histograms-and-plots" title="Link to this heading">#</a></h2>
+<div class="objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>In this second example, you will learn how to:</p>
+<ul class="simple">
+<li><p>read the <strong>edm4hep</strong> data format, produce jet collections and evaluate the ParticleNet jet tagger score and apply an an event <strong>preselection</strong></p></li>
+<li><p>produce <strong>flat ntuples</strong> with observables of interest with <strong>FCCAnalyses</strong></p></li>
+<li><p>apply an <strong>event selection</strong> and <strong>fill histograms</strong> in a single iteration using the <strong>histmaker</strong> option.</p></li>
+<li><p>produce plots with the <strong>plot</strong> option.</p></li>
+</ul>
+</div>
+<p>This first analysis stage usually runs on large samples on batch, and the idea is to produce small ntuples with less variables. Also, jet inference of the jet tagger is pretty slow, and usually has to be performed only once. In this exercise we will run the <strong>histmaker</strong> in a separate, second stage.</p>
+<p>Download this analysis script <a class="reference download internal" download="" href="../../_downloads/22ab01dc566ba2bae41bf749bd266cb2/treemaker_flavor.py"><span class="xref download myst">treemaker_flavor.py</span></a> and run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fccanalysis<span class="w"> </span>run<span class="w"> </span>treemaker_flavor.py
+</pre></div>
+</div>
+<p>This will produce a root file for every process containing a flat tree <code class="docutils literal notranslate"><span class="pre">events</span></code> containing high-level variables. In addition to selecting muons as done in the previous example, this script create a new collection of <code class="docutils literal notranslate"><span class="pre">ReconstructedParticles</span></code> without the two high energy muons, and runs the jet clustering algorithm in exclusive N=2 mode of the new collection. In such a way, the two clustered jets form the H-&gt;jj jet candidates. The jet flavour algorithm is then evaluated on these two jets and the relevant scores are stored in the output tree.</p>
+<p>Now we can download a dedicated <a class="reference download internal" download="" href="../../_downloads/677901db884c56146b41e6074d6172d5/histmaker_flavor.py"><span class="xref download myst">histmaker_flavor.py</span></a> script, that runs this time on the just created flat ntuples files instead of the edm4hep format.</p>
+<p>Run it as before:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fccanalysis<span class="w"> </span>run<span class="w"> </span>histmaker_flavor.py
+</pre></div>
+</div>
+<p>This script takes the ntuples produced in the previous step, applies a similar selection as in the previous examples, but requires the jets to have a high probability to be B-like.</p>
+<p>To compare the results between the flavor and recoil approaches, we again produce plots using a dedicated <a class="reference download internal" download="" href="../../_downloads/6e5a775538a69ccf970bb0fe6c0e9dc4/plots_flavor.py"><span class="xref download myst">plots_flavor.py</span></a> script and run it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fccanalysis<span class="w"> </span>plots<span class="w"> </span>plots_flavor.py
+</pre></div>
+</div>
+<div class="challenge admonition">
+<p class="admonition-title">Exercises</p>
+<h2 class="rubric" id="simple">Simple</h2>
+<ol class="arabic simple">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">histmaker_flavor.py</span></code> to require the two jets individually to be B-like, i.e requiring the B score is greater 0.5 for each jet.</p></li>
+<li><p>Selecting gluon-like jets instead. You will need to modify both the  <code class="docutils literal notranslate"><span class="pre">treemaker_flavor.py</span></code> and <code class="docutils literal notranslate"><span class="pre">histmaker_flavor.py</span></code> for this.)</p></li>
+<li><p>Produce plots with larger statistics by re-running <code class="docutils literal notranslate"><span class="pre">DelphesPythia8_EDM4HEP</span></code> with more events. In particular produce a ZZ inclusive sample using to include all Z decays. Rerun all the examples above.</p></li>
+</ol>
+<h2 class="rubric" id="advanced">Advanced</h2>
+<ol class="arabic simple">
+<li><p>To evaluate the impact of detector performance, smear the neutral hadron resolution in the <code class="docutils literal notranslate"><span class="pre">ReconstructedParticlesNoMuons</span></code> collection and check the impact on the dijet invariant mass resolution. An example can be found [here] (https://github.com/HEP-FCC/FCCAnalyses/blob/master/examples/FCCee/smearing/smear_jets.py):</p></li>
+<li><p>Now smear the impact parameter resolution and evaluate the imapct on the efficiency of selecting two B-tagged jets or two C-tagged jets.</p></li>
+<li><p><strong>This part can only be on lxplus and for people having the access rights to eos and the analysis dictonary</strong>
+In order to produce plots with more statistics using centrally produced samples, we could use already processed large statistics samples.
+To do so we re-run the pre-selection over 10 percent of the total statistics <a class="reference external" href="https://fcc-physics-events.web.cern.ch/FCCee/spring2021/Delphesevents_IDEA.php">here</a>.
+Add to your a <code class="docutils literal notranslate"><span class="pre">analysis_stage1.py</span></code> file</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processList</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'p8_ee_ZZ_ecm240'</span><span class="p">:{</span><span class="s1">'fraction'</span><span class="p">:</span><span class="mf">0.1</span><span class="p">},</span>
+    <span class="s1">'p8_ee_WW_ecm240'</span><span class="p">:{</span><span class="s1">'fraction'</span><span class="p">:</span><span class="mf">0.1</span><span class="p">},</span>
+    <span class="s1">'p8_ee_ZH_ecm240'</span><span class="p">:{</span><span class="s1">'fraction'</span><span class="p">:</span><span class="mf">0.1</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">prodTag</span>     <span class="o">=</span> <span class="s2">"FCCee/winter2023/IDEA/"</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Analysis at FCC</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../3-2-tracking-vertexing/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>Beyond the Basics: Tracking and Vertexing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-recoil-mass-analysis-and-histograms-in-a-single-step">3.1.1. Part I - Recoil Mass: Analysis and Histograms in a Single Step</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-jet-flavor-producing-a-flat-ntuple-tree-before-creating-histograms-and-plots">3.1.2. Part II - Jet Flavor: Producing a flat ntuple tree before creating histograms and plots</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Author name not set
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, CERN.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

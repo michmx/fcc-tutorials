@@ -1,0 +1,907 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6.1. Github workflow and contribution guide &#8212; FCC Tutorials  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom-admonitions.css?v=e6bfab01" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '6-developing-fccsw/FccSoftwareGit';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.2. CMake guide for the FCC software" href="FccCMakeGuide.html" />
+    <link rel="prev" title="6. Developing FCCSW" href="README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/fcc-logo-dark.png" class="logo__image only-light" alt="FCC Tutorials  documentation - Home"/>
+    <img src="../_static/fcc-logo-light.png" class="logo__image only-dark pst-js-only" alt="FCC Tutorials  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../1-first-steps/README.html">
+    First Steps
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../2-gen-and-fastsim/README.html">
+    Generation and Fast Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../3-analysis/README.html">
+    Analysis at FCC
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../4-full-detector-sim/README.html">
+    Full Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../5-distributed-computing/README.html">
+    Distributed Computing
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="README.html">
+    Developing FCCSW
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../7-contributing/README.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://fccsw.web.cern.ch/">
+    FCC Software
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://key4hep.web.cern.ch">
+    Key4hep
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://fcc-ee-detector-full-sim.docs.cern.ch/">
+    FCC-ee Detector Full Sim
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://hep-fcc.github.io/FCCAnalyses/">
+    FCCAnalyses
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://hsf-training.github.io/analysis-essentials/">
+    HSF Analysis essentials
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-external" href="https://hep-fcc.github.io/glossary">
+    FCC Software glossary
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/HEP-FCC/fcc-tutorials" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../1-first-steps/README.html">
+    First Steps
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../2-gen-and-fastsim/README.html">
+    Generation and Fast Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../3-analysis/README.html">
+    Analysis at FCC
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../4-full-detector-sim/README.html">
+    Full Simulation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../5-distributed-computing/README.html">
+    Distributed Computing
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="README.html">
+    Developing FCCSW
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../7-contributing/README.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://fccsw.web.cern.ch/">
+    FCC Software
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://key4hep.web.cern.ch">
+    Key4hep
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://fcc-ee-detector-full-sim.docs.cern.ch/">
+    FCC-ee Detector Full Sim
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://hep-fcc.github.io/FCCAnalyses/">
+    FCCAnalyses
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://hsf-training.github.io/analysis-essentials/">
+    HSF Analysis essentials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://hep-fcc.github.io/glossary">
+    FCC Software glossary
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/HEP-FCC/fcc-tutorials" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6.1. Github workflow and contribution guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FccCMakeGuide.html">6.2. CMake guide for the FCC software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingAlgorithms.html">6.3. Writing Gaudi Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DevelopingDD4hep.html">6.4. Developing DD4hep Detector models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Edm4hepTransition.html">6.5. Guide to the Transition of FCCSW to EDM4hep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FccDocPage.html">6.6. Writing documentation for the FCC Software</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="README.html" class="nav-link"><span class="section-number">6. </span>Developing FCCSW</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">6.1. </span>Github workflow and contribution guide</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="github-workflow-and-contribution-guide">
+<h1><span class="section-number">6.1. </span>Github workflow and contribution guide<a class="headerlink" href="#github-workflow-and-contribution-guide" title="Link to this heading">#</a></h1>
+<!-- contributors:start -->
+<div class="callout dropdown admonition">
+<p class="admonition-title">Page contributors</p>
+<p>Joschka Lingemann, Valentin Volkl, Juraj Smiesko</p>
+</div>
+<!-- contributors:end -->
+<section id="overview">
+<h2><span class="section-number">6.1.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>This page should allow users that are new to Git to get started with the FCC
+software, and describes the workflow for accessing and contributing FCC
+code.</p>
+<p>For a general introduction to git, have a look at these tutorials:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.atlassian.com/git/tutorials/">Atlassian tutorial</a></p></li>
+<li><p><a class="reference external" href="https://pcottle.github.io/learnGitBranching/">Interactive tutorial</a></p></li>
+<li><p><a class="reference external" href="https://git-scm.com/book/en/v2">The git book</a></p></li>
+</ul>
+</section>
+<section id="first-time-setup-of-git">
+<h2><span class="section-number">6.1.2. </span>First time setup of git<a class="headerlink" href="#first-time-setup-of-git" title="Link to this heading">#</a></h2>
+<p>Please refer to <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">this tutorial</a> and the <a class="reference external" href="https://help.github.com/articles/set-up-git/">GitHub help</a>.</p>
+</section>
+<section id="generate-and-set-up-ssh-keys-for-github">
+<h2><span class="section-number">6.1.3. </span>Generate and set up ssh keys for github<a class="headerlink" href="#generate-and-set-up-ssh-keys-for-github" title="Link to this heading">#</a></h2>
+<p>When working on lxplus we recommend to clone github repositories via SSH, especially if you want to contribute code. For this to work, you need to generate ssh keys for authentication. See the corresponding github <a class="reference external" href="https://help.github.com/articles/generating-an-ssh-key/">help-page</a>.</p>
+<div class="callout admonition">
+<p class="admonition-title">Generate and set up ssh keys for github</p>
+<p>If you only want to use the software it may be easier to use https. In that case you don’t need to generate the keys but have to replace <code class="docutils literal notranslate"><span class="pre">git&#64;github:</span></code> with <code class="docutils literal notranslate"><span class="pre">https://github.com/</span></code> in all the instructions. Note that you’ll not be able to push to your repository when you are on lxplus. You can also start using https for now and later re-add your repository with ssh authentication, see the <a class="reference internal" href="#trouble-shooting">trouble shooting section</a></p>
+</div>
+</section>
+<section id="improving-your-git-experience">
+<h2><span class="section-number">6.1.4. </span>Improving your git experience<a class="headerlink" href="#improving-your-git-experience" title="Link to this heading">#</a></h2>
+<p>It may be useful to install <a class="reference external" href="https://github.com/git/git/tree/master/contrib/completion">Git integration tools</a> for your shell that allow tab-completion of most git commands and also can show you in your prompt on which branch you currently are, what changes you have pending, etc.</p>
+</section>
+<section id="development-workflow">
+<h2><span class="section-number">6.1.5. </span>Development workflow<a class="headerlink" href="#development-workflow" title="Link to this heading">#</a></h2>
+<p>You will be using (at least) 3 versions of the FCCSW repository:</p>
+<ol class="arabic simple">
+<li><p>The official <a class="reference external" href="https://github.com/HEP-FCC/FCCSW">FCCSW on github</a></p></li>
+<li><p>Your fork of FCCSW on github (see <a class="reference external" href="https://help.github.com/articles/fork-a-repo/">github help</a> on what that means)</p></li>
+<li><p>Your local repository copy in your work area (e.g. on AFS)</p></li>
+</ol>
+<p>The repositories 1 and 2 are added as remote to the repository 3:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:<span class="o">[</span>YOUR_GITHUB_USER<span class="o">]</span>/FCCSW.git<span class="w"> </span><span class="c1"># create a local copy (3) of your fork (2)</span>
+<span class="nb">cd</span><span class="w"> </span>FCCSW
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>hep-fcc<span class="w"> </span>git@github.com:HEP-FCC/FCCSW.git<span class="w"> </span><span class="c1"># add official repo (1) as additional remote</span>
+</pre></div>
+</div>
+<section id="keeping-your-local-repository-up-to-date">
+<h3><span class="section-number">6.1.5.1. </span>Keeping your local repository up to date<a class="headerlink" href="#keeping-your-local-repository-up-to-date" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>fetch all changes from the official repository (1)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>fetch<span class="w"> </span>hep-fcc
+</pre></div>
+</div>
+</li>
+<li><p>rebase your development area to the master branch from the official repository (1), <strong>please read <a class="reference external" href="https://www.atlassian.com/git/tutorials/rewriting-history">this</a> to avoid loss of work</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>hep-fcc/master
+</pre></div>
+</div>
+<p>in this process you can also fix any commits that need touching up, <strong>be aware that deleting commits in the list will result also in the deletion of the corresponding changes</strong> (more info in the <a class="reference external" href="https://help.github.com/articles/about-git-rebase/">GitHub help</a> and the <a class="reference external" href="https://www.atlassian.com/git/tutorials/rewriting-history">Atlassian tutorial</a>)</p>
+</li>
+<li><p>push your local changes to your fork (2), see <a class="reference internal" href="#contributing-code">below</a> how to create a local branch</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="p">[</span><span class="n">NAME_OF_LOCAL_BRANCH</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="contributing-code">
+<h3><span class="section-number">6.1.5.2. </span>Contributing code<a class="headerlink" href="#contributing-code" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>if you are fixing a bug, first create an issue in the github <a class="reference external" href="https://github.com/HEP-FCC/FCCSW/issues">issue tracker</a></p></li>
+<li><p>develop your feature in your local copy (3) on a local branch of your choice, to create a branch do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">b</span> <span class="p">[</span><span class="n">NAME_OF_LOCAL_BRANCH</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>refer to <a class="reference external" href="https://www.atlassian.com/git/tutorials/saving-changes">this tutorial</a> to see how to commit changes</p></li>
+<li><p>occasionally, get new code from the official repository (1) as explained above and merge it in this branch</p></li>
+<li><p>test:</p>
+<ul class="simple">
+<li><p>that the code compiles and all tests succeed (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">&amp;&amp;</span> <span class="pre">make</span> <span class="pre">test</span></code>)</p></li>
+<li><p>that your code runs (even better: <a class="reference external" href="https://github.com/HEP-FCC/FCCSW/blob/master/doc/AddingTestsToFCCSW.md">add an automatic test</a>)</p></li>
+<li><p>that it produces the expected results</p></li>
+</ul>
+</li>
+<li><p>push your local branch to your fork (2) (see <a class="reference internal" href="#keeping-your-local-repository-up-to-date">above</a>)</p></li>
+<li><p>create a pull request from your fork (2) to the offical repository’s (1) master branch (see github <a class="reference external" href="https://help.github.com/articles/creating-a-pull-request/">help-page</a>)</p>
+<ul class="simple">
+<li><p>also see the <a class="reference internal" href="#pull-requests">recommendations for pull requests</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="recommendations">
+<h2><span class="section-number">6.1.6. </span>Recommendations<a class="headerlink" href="#recommendations" title="Link to this heading">#</a></h2>
+<p>Please always follow the recommendations below.</p>
+<section id="general-recommendations">
+<h3><span class="section-number">6.1.6.1. </span>General recommendations<a class="headerlink" href="#general-recommendations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>if you’re working on a given topic, always create a branch for
+it, e.g. <code class="docutils literal notranslate"><span class="pre">pythia_interface</span></code>. You may commit many times to this branch
+in your local repository. When you have something solid create a
+pull request to the official FCCSW repository.</p></li>
+<li><p>Have a look at our <a class="reference external" href="https://github.com/HEP-FCC/FCCSW/blob/master/doc/CppCodingStyleGuidelines.md">coding guidelines</a>.</p></li>
+</ul>
+</section>
+<section id="commit-comments">
+<h3><span class="section-number">6.1.6.2. </span>Commit comments<a class="headerlink" href="#commit-comments" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>feel free to commit often to your local repository, make a pull request once the topic you are working on is finished</p>
+<ul class="simple">
+<li><p>if the feature you are working on is large, consider making a work in progress-pull request (see <a class="reference internal" href="#pull-requests">below</a>)</p></li>
+<li><p>git commits represent a snapshot of the software as a whole, and not only the difference to a previous commit (although that as well, in practice). It is recommended that each commit compiles and passes the tests. Take a look at the <a class="reference external" href="https://github.com/HEP-FCC/FCCSW/commits/master">commit history of FCCSW</a> and the histories of some individual files to find both good and bad examples.</p></li>
+</ul>
+</li>
+<li><p>always provide a meaningful comment for each commit</p>
+<ul class="simple">
+<li><p>if you are working on an issue, refer to that issue by adding “refs. #[issue id]”, see also
+<a class="reference external" href="https://help.github.com/articles/closing-issues-via-commit-messages/">GitHub help</a></p></li>
+</ul>
+</li>
+<li><p>commit comments should look like the one below, so that they show up
+correctly in git printouts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">first</span> <span class="n">version</span> <span class="n">of</span> <span class="n">a</span> <span class="n">pythia</span> <span class="n">interface</span> <span class="c1"># this line should be a short 1 liner</span>
+
+<span class="n">Here</span><span class="p">,</span> <span class="n">you</span> <span class="n">may</span> <span class="n">write</span> <span class="n">a</span> <span class="n">few</span> <span class="n">more</span> <span class="n">lines</span> <span class="k">if</span> <span class="n">needed</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="cleaning-history">
+<h3><span class="section-number">6.1.6.3. </span>Cleaning history<a class="headerlink" href="#cleaning-history" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>before opening a pull request it may be a good idea to check that your history makes sense (commit messages explain what you did, no unnecessary commits, etc.), check with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">log</span>
+</pre></div>
+</div>
+</li>
+<li><p>if you see commits that you’d like to change, there are several ways of doing that, the most commonly used is <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span></code>:</p>
+<ul class="simple">
+<li><p>with the interactive version you can rebase your development branch to the official master and fix the history at the same time</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">fetch</span> <span class="n">hep</span><span class="o">-</span><span class="n">fcc</span> <span class="c1"># get changes from the official repo</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">hep</span><span class="o">-</span><span class="n">fcc</span><span class="o">/</span><span class="n">master</span> <span class="c1"># do the actual rebase</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>git will guide you through the steps, where you can delete entire commits (and the corresponding changes), merge commits and change commit messages</p></li>
+<li><p>more information can be found in <a class="reference external" href="https://www.atlassian.com/git/tutorials/rewriting-history#git-rebase-i">this tutorial</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="pull-requests">
+<h3><span class="section-number">6.1.6.4. </span>Pull requests<a class="headerlink" href="#pull-requests" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Give a meaningful title that appropriately describes what you did (e.g. Add new calorimeter clustering)</p>
+<ul>
+<li><p>Pull requests of work in progress (to make people aware that you are working on a feature) create a PR starting with “[WIP]”</p></li>
+</ul>
+</li>
+<li><p>In the description, give a short bullet-point list of what was done</p></li>
+<li><p>If your pull request fixes issues tracked in the <a class="reference external" href="https://github.com/HEP-FCC/FCCSW/issues">issue tracker</a>:</p>
+<ul>
+<li><p>Make sure you added a test that shows they are actually fixed</p></li>
+<li><p>In the description mention that you fixed it by referring to the issue: “fixes #<issue-id>” (this will automatically close the issue, see also <a class="reference external" href="https://help.github.com/articles/closing-issues-via-commit-messages/">GitHub help</a>)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="trouble-shooting">
+<h2><span class="section-number">6.1.7. </span>Trouble-shooting<a class="headerlink" href="#trouble-shooting" title="Link to this heading">#</a></h2>
+<section id="when-i-try-to-push-to-the-repository-i-get-an-authentication-error">
+<h3><span class="section-number">6.1.7.1. </span>When I try to push to the repository, I get an authentication error<a class="headerlink" href="#when-i-try-to-push-to-the-repository-i-get-an-authentication-error" title="Link to this heading">#</a></h3>
+<p>Check with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> which remote repositories you have added to your local copy. You should see something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hep</span><span class="o">-</span><span class="n">fcc</span>	<span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">HEP</span><span class="o">-</span><span class="n">FCC</span><span class="o">/</span><span class="n">FCCSW</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+<span class="n">hep</span><span class="o">-</span><span class="n">fcc</span>	<span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">HEP</span><span class="o">-</span><span class="n">FCC</span><span class="o">/</span><span class="n">FCCSW</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+<span class="n">origin</span>	<span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:[</span><span class="n">your</span> <span class="n">git</span> <span class="n">user</span> <span class="n">name</span><span class="p">]</span><span class="o">/</span><span class="n">FCCSW</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+<span class="n">origin</span>	<span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:[</span><span class="n">your</span> <span class="n">git</span> <span class="n">user</span> <span class="n">name</span><span class="p">]</span><span class="o">/</span><span class="n">FCCSW</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you see something similar but all the addresses start with <code class="docutils literal notranslate"><span class="pre">https</span></code>, see <a class="reference internal" href="#i-have-cloned-with-https-and-now-i-can-t-push-my-changes-what-do-i-do">below</a>.</p>
+<p>If you only see <code class="docutils literal notranslate"><span class="pre">origin</span> <span class="pre">git&#64;github.com:HEP-FCC/FCCSW.git</span></code>, you need to add your own repository, push to that one and do a pull request, as described above. To add your own repository do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="n">rename</span> <span class="n">origin</span> <span class="n">hep</span><span class="o">-</span><span class="n">fcc</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">myfccsw</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:[</span><span class="n">your</span> <span class="n">git</span> <span class="n">user</span> <span class="n">name</span><span class="p">]</span><span class="o">/</span><span class="n">FCCSW</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</section>
+<section id="i-have-cloned-with-https-and-now-i-can-t-push-my-changes-what-do-i-do">
+<h3><span class="section-number">6.1.7.2. </span>I have cloned with https and now I can’t push my changes, what do I do?<a class="headerlink" href="#i-have-cloned-with-https-and-now-i-can-t-push-my-changes-what-do-i-do" title="Link to this heading">#</a></h3>
+<p>You only need to change the URL of your remote pointing to your repository to one that uses SSH instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="nb">set</span><span class="o">-</span><span class="n">url</span> <span class="p">[</span><span class="n">the</span> <span class="n">remote</span> <span class="n">name</span><span class="p">]</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:[</span><span class="n">your</span> <span class="n">git</span> <span class="n">user</span> <span class="n">name</span><span class="p">]</span><span class="o">/</span><span class="n">FCCSW</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Now you can push to that remote with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="p">[</span><span class="n">the</span> <span class="n">remote</span> <span class="n">name</span><span class="p">]</span> <span class="p">[</span><span class="n">the</span> <span class="n">branch</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">push</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="need-help">
+<h2><span class="section-number">6.1.8. </span>Need help?<a class="headerlink" href="#need-help" title="Link to this heading">#</a></h2>
+<p>In case you have any questions on this guide, or need help to sort out
+an issue with a repository, feel free to drop a mail to
+fcc-experiments-sw-dev at CERN, and we’ll be happy to help you.
+Alternatively create an issue in the <a class="reference external" href="https://github.com/HEP-FCC/FCCSW/issues">bug tracker</a>
+<img alt="smile" src="https://twiki.cern.ch/twiki/pub/TWiki/SmiliesPlugin/smile.gif" /></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Developing FCCSW</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="FccCMakeGuide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6.2. </span>CMake guide for the FCC software</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">6.1.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-time-setup-of-git">6.1.2. First time setup of git</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-and-set-up-ssh-keys-for-github">6.1.3. Generate and set up ssh keys for github</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-your-git-experience">6.1.4. Improving your git experience</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-workflow">6.1.5. Development workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keeping-your-local-repository-up-to-date">6.1.5.1. Keeping your local repository up to date</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-code">6.1.5.2. Contributing code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommendations">6.1.6. Recommendations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-recommendations">6.1.6.1. General recommendations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-comments">6.1.6.2. Commit comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-history">6.1.6.3. Cleaning history</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-requests">6.1.6.4. Pull requests</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trouble-shooting">6.1.7. Trouble-shooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-i-try-to-push-to-the-repository-i-get-an-authentication-error">6.1.7.1. When I try to push to the repository, I get an authentication error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-have-cloned-with-https-and-now-i-can-t-push-my-changes-what-do-i-do">6.1.7.2. I have cloned with https and now I can’t push my changes, what do I do?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#need-help">6.1.8. Need help?</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/HEP-FCC/fcc-tutorials/edit/main/6-developing-fccsw/FccSoftwareGit.md">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/6-developing-fccsw/FccSoftwareGit.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, CERN.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

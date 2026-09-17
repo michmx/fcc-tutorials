@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Analysis at FCC &#8212; FCC Tutorials  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom-admonitions.css?v=e6bfab01" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3-analysis/README';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.1. Getting Started: Higgs Mass Analysis with FCCAnalyses" href="3-1-higgs-analysis/README.html" />
+    <link rel="prev" title="2.3. EDM4hep Event Data Explorer: eedE" href="../2-gen-and-fastsim/2-4-eedE/README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/fcc-logo-dark.png" class="logo__image only-light" alt="FCC Tutorials  documentation - Home"/>
+    <script>document.write(`<img src="../_static/fcc-logo-light.png" class="logo__image only-dark" alt="FCC Tutorials  documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1-first-steps/README.html">1. First Steps</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/prerequisites.html">1.1. Pre-tutorial checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/swan.html">1.2. Running the software in SWAN notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/introduction-to-course.html">1.3. Goals of the course</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/fccsw.html">1.4. An introduction to FCC Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/bookkeeping.html">1.5. Finding data in the Bookkeeping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/exploring-fcc-files.html">1.6. Inspecting an FCC data file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/tips-tricks.html">1.7. Tips and tricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/asking-questions.html">1.8. Asking good questions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-gen-and-fastsim/README.html">2. Generation and Fast Simulation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-gen-and-fastsim/2-1-event-generation/README.html">2.1. Getting Started with Event Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-gen-and-fastsim/2-2-fastsim-delphes/README.html">2.2. Getting Started with Fast Simulation in Delphes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-gen-and-fastsim/2-4-eedE/README.html">2.3. EDM4hep Event Data Explorer: eedE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">3. Analysis at FCC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="3-1-higgs-analysis/README.html">3.1. Getting Started: Higgs Mass Analysis with FCCAnalyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-2-tracking-vertexing/README.html">3.2. Beyond the Basics: Tracking and Vertexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-useful-info/README.html">3.3. Some Useful Info on EDM4hep, Analyzers, and More</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4-full-detector-sim/README.html">4. Full Simulation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/FCCeeGeneralOverview/FCCeeGeneralOverview.html">4.1. FCC-ee Full Sim General Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/FCCeeGuineaPigIRBackgrounds/README.html">4.2. Using Guinea-Pig to generate interaction region backgrounds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/Geometry/Geometry.html">4.3. Changing geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/Visualization/Visualization.html">4.4. Visualization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../5-distributed-computing/README.html">5. Distributed Computing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../5-distributed-computing/EventProducer.html">5.1. EventProducer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../5-distributed-computing/RegisteringToFccVO.html">5.2. Getting started with FCC distributed computing</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../5-distributed-computing/Workflows.html">5.3. FCC DIRAC Example Workflows</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../5-distributed-computing/workflows/Overview.html">5.3.1. Overview of the job submission script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../5-distributed-computing/workflows/01/DiTauKKMCeeDelphesStandAlone.html">5.3.2. Workflow 1: Ditau with KKMCee + Delphes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../5-distributed-computing/OutputStructure.html">5.4. Structure for /eos/experiment/fcc/prod</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../6-developing-fccsw/README.html">6. Developing FCCSW</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/FccSoftwareGit.html">6.1. Github workflow and contribution guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/FccCMakeGuide.html">6.2. CMake guide for the FCC software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/WritingAlgorithms.html">6.3. Writing Gaudi Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/DevelopingDD4hep.html">6.4. Developing DD4hep Detector models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/Edm4hepTransition.html">6.5. Guide to the Transition of FCCSW to EDM4hep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/FccDocPage.html">6.6. Writing documentation for the FCC Software</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../7-contributing/README.html">7. Contributing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../7-contributing/CONDUCT.html">7.4.1. Contributor Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7-contributing/LICENSE.html">7.4.2. License</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">External links:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://fccsw.web.cern.ch/">FCC Software</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://key4hep.web.cern.ch">Key4hep</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://fcc-ee-detector-full-sim.docs.cern.ch/">FCC-ee Detector Full Sim</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hep-fcc.github.io/FCCAnalyses/">FCCAnalyses</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hsf-training.github.io/analysis-essentials/">HSF Analysis essentials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hep-fcc.github.io/glossary">FCC Software glossary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/HEP-FCC/fcc-tutorials" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/HEP-FCC/fcc-tutorials/edit/main/3-analysis/README.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/HEP-FCC/fcc-tutorials/issues/new?title=Issue%20on%20page%20%2F3-analysis/README.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/3-analysis/README.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Analysis at FCC</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analysis-at-fcc">
+<h1><span class="section-number">3. </span>Analysis at FCC<a class="headerlink" href="#analysis-at-fcc" title="Link to this heading">#</a></h1>
+<p>FCCAnalyses is a high-level analysis framework developed within the FCC software ecosystem. It provides a convenient interface for performing physics analyses on EDM4hep-based data using ROOT RDataFrame as the underlying event-processing engine.</p>
+<p>This chapter introduces FCCAnalyses through a series of practical examples, starting from simple analysis workflows and gradually moving toward more realistic use cases. The final section of this chapter provides a more theoretical introduction to the core tools and data model used throughout FCCAnalyses, including EDM4hep and ROOT RDataFrame, which form the backbone of most workflows.</p>
+<p>If you have any problems or questions, you can
+<a class="reference external" href="https://github.com/HEP-FCC/fcc-tutorials/issues">open an issue</a> on the
+<a class="reference external" href="https://github.com/HEP-FCC/fcc-tutorials">GitHub repository where these lessons are developed</a>.</p>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3-1-higgs-analysis/README.html">3.1. Getting Started: Higgs Mass Analysis with FCCAnalyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3-1-higgs-analysis/README.html#part-i-recoil-mass-analysis-and-histograms-in-a-single-step">3.1.1. Part I - Recoil Mass: Analysis and Histograms in a Single Step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-1-higgs-analysis/README.html#part-ii-jet-flavor-producing-a-flat-ntuple-tree-before-creating-histograms-and-plots">3.1.2. Part II - Jet Flavor: Producing a flat ntuple tree before creating histograms and plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3-2-tracking-vertexing/README.html">3.2. Beyond the Basics: Tracking and Vertexing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3-2-tracking-vertexing/README.html#getting-the-fccanalyses">3.2.1. Getting the FCCAnalyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-2-tracking-vertexing/README.html#adding-analyzers-to-the-fccanalyses">3.2.2. Adding analyzers to the FCCAnalyses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#exercise">3.2.2.1. Exercise</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3-2-tracking-vertexing/README.html#reconstruction-of-the-primary-vertex-and-of-primary-tracks">3.2.3. Reconstruction of the primary vertex and of primary tracks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#exercise-1">3.2.3.1. Exercise 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#exercise-2">3.2.3.2. Exercise 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#exercise-3">3.2.3.3. Exercise 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#exercise-4">3.2.3.4. Exercise 4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3-2-tracking-vertexing/README.html#reconstruction-of-displaced-vertices-in-an-exclusive-decay-chain">3.2.4. Reconstruction of displaced vertices in an exclusive decay chain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-2-tracking-vertexing/README.html#analysis-of-tau-rightarrow-3-mu">3.2.5. Analysis of <span class="math notranslate nohighlight">\(\tau \rightarrow 3 \mu\)</span></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#id1">3.2.5.1. Exercise 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#id2">3.2.5.2. Exercise 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#id3">3.2.5.3. Exercise 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#id4">3.2.5.4. Exercise 4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#exercise-5">3.2.5.5. Exercise 5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-2-tracking-vertexing/README.html#exercise-6">3.2.5.6. Exercise 6</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3-3-useful-info/README.html">3.3. Some Useful Info on EDM4hep, Analyzers, and More</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3-3-useful-info/README.html#edm4hep-in-fccanalyses">3.3.1. EDM4hep in FCCAnalyses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="3-3-useful-info/README.html#edm4hep-event-model">3.3.1.1. EDM4hep event model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-3-useful-info/README.html#structure-of-edm4hep-files">3.3.1.2. Structure of EDM4hep Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-useful-info/README.html#overall-organisation-of-analysis-code-c">3.3.2. Overall organisation of analysis code (C++)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-useful-info/README.html#reading-objects-from-edm4hep">3.3.3. Reading objects from EDM4hep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-useful-info/README.html#association-between-recoparticles-and-montecarloparticles">3.3.4. Association between <code class="docutils literal notranslate"><span class="pre">RecoParticles</span></code> and <code class="docutils literal notranslate"><span class="pre">MonteCarloParticles</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-useful-info/README.html#navigation-through-the-history-of-the-mc-particles">3.3.5. Navigation through the history of the MC particles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-useful-info/README.html#writing-a-new-analyzer">3.3.6. Writing a new analyzer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="3-3-useful-info/README.html#c-string">3.3.6.1. C++ string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-3-useful-info/README.html#using-root-ginterpreter">3.3.6.2. Using ROOT gInterpreter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-3-useful-info/README.html#inside-an-existing-fccanalyses-module">3.3.6.3. Inside an existing FCCAnalyses module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-useful-info/README.html#writing-a-new-struct">3.3.7. Writing a new struct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-useful-info/README.html#writing-a-new-module">3.3.8. Writing a new module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-3-useful-info/README.html#writing-your-own-analysis-using-the-case-studies-generator">3.3.9. Writing your own analysis using the case-studies generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="3-3-useful-info/README.html#analysis-package-generation">3.3.9.1. Analysis package generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="3-3-useful-info/README.html#analysis-package-exposure-to-rdf">3.3.9.2. Analysis package exposure to RDF</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../2-gen-and-fastsim/2-4-eedE/README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2.3. </span>EDM4hep Event Data Explorer: eedE</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="3-1-higgs-analysis/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.1. </span>Getting Started: Higgs Mass Analysis with FCCAnalyses</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Author name not set
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, CERN.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

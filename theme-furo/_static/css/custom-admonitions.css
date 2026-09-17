@@ -1,0 +1,88 @@
+/* Custom admonitions inspired by LHCb Starterkit, styled for the Furo theme.
+   Furo colours admonitions with a left border, a tinted title bar and an SVG
+   icon drawn via mask-image (see Furo's content/_admonitions.sass). The icon
+   names below are Furo's built-in --icon-* variables. */
+
+/* Prerequisite admonition */
+.admonition.prereq {
+    border-left-color: #c9a227;
+}
+.admonition.prereq > .admonition-title {
+    background-color: rgba(201, 162, 39, 0.2);
+}
+.admonition.prereq > .admonition-title::before {
+    background-color: #c9a227;
+    mask-image: var(--icon-abstract);
+}
+
+/* Callout admonition */
+.admonition.callout {
+    border-left-color: #3b8bd0;
+}
+.admonition.callout > .admonition-title {
+    background-color: rgba(59, 139, 208, 0.2);
+}
+.admonition.callout > .admonition-title::before {
+    background-color: #3b8bd0;
+    mask-image: var(--icon-info);
+}
+
+/* Challenge admonition */
+.admonition.challenge {
+    border-left-color: #5cb85c;
+}
+.admonition.challenge > .admonition-title {
+    background-color: rgba(92, 184, 92, 0.2);
+}
+.admonition.challenge > .admonition-title::before {
+    background-color: #5cb85c;
+    mask-image: var(--icon-question);
+}
+
+/* Solution admonition */
+.admonition.solution {
+    border-left-color: #d9534f;
+}
+.admonition.solution > .admonition-title {
+    background-color: rgba(217, 83, 79, 0.2);
+}
+.admonition.solution > .admonition-title::before {
+    background-color: #d9534f;
+    mask-image: var(--icon-pencil);
+}
+
+/* Objectives admonition */
+.admonition.objectives {
+    border-left-color: #c9a227;
+}
+.admonition.objectives > .admonition-title {
+    background-color: rgba(201, 162, 39, 0.2);
+}
+.admonition.objectives > .admonition-title::before {
+    background-color: #c9a227;
+    mask-image: var(--icon-flame);
+}
+
+/* Keypoints admonition */
+.admonition.keypoints {
+    border-left-color: #5cb85c;
+}
+.admonition.keypoints > .admonition-title {
+    background-color: rgba(92, 184, 92, 0.2);
+}
+.admonition.keypoints > .admonition-title::before {
+    background-color: #5cb85c;
+    mask-image: var(--icon-spark);
+}
+
+/* Discussion admonition */
+.admonition.discussion {
+    border-left-color: #31708f;
+}
+.admonition.discussion > .admonition-title {
+    background-color: rgba(49, 112, 143, 0.2);
+}
+.admonition.discussion > .admonition-title::before {
+    background-color: #31708f;
+    mask-image: var(--icon-info);
+}

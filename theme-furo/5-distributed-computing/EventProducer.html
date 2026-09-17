@@ -1,0 +1,692 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="5.2. Getting started with FCC distributed computing" href="RegisteringToFccVO.html"><link rel="prev" title="5. Distributed Computing" href="README.html">
+        <link rel="prefetch" href="../_static/img/fcc-logo-dark.png" as="image">
+        <link rel="prefetch" href="../_static/img/fcc-logo-light.png" as="image">
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"><!-- Generated with Sphinx 7.4.7 and Furo 2025.12.19 -->
+        <title>5.1. EventProducer - FCC Tutorials documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom-admonitions.css?v=f8c4505d" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">FCC Tutorials  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../_static/img/fcc-logo-dark.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../_static/img/fcc-logo-light.png" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">FCC Tutorials  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1-first-steps/README.html">1. First Steps</a><input aria-label="Toggle navigation of 1. First Steps" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/prerequisites.html">1.1. Pre-tutorial checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/swan.html">1.2. Running the software in SWAN notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/introduction-to-course.html">1.3. Goals of the course</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/fccsw.html">1.4. An introduction to FCC Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/bookkeeping.html">1.5. Finding data in the Bookkeeping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/exploring-fcc-files.html">1.6. Inspecting an FCC data file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/tips-tricks.html">1.7. Tips and tricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1-first-steps/asking-questions.html">1.8. Asking good questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2-gen-and-fastsim/README.html">2. Generation and Fast Simulation</a><input aria-label="Toggle navigation of 2. Generation and Fast Simulation" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2-gen-and-fastsim/2-1-event-generation/README.html">2.1. Getting Started with Event Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-gen-and-fastsim/2-2-fastsim-delphes/README.html">2.2. Getting Started with Fast Simulation in Delphes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2-gen-and-fastsim/2-4-eedE/README.html">2.3. EDM4hep Event Data Explorer: eedE</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3-analysis/README.html">3. Analysis at FCC</a><input aria-label="Toggle navigation of 3. Analysis at FCC" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3-analysis/3-1-higgs-analysis/README.html">3.1. Getting Started: Higgs Mass Analysis with FCCAnalyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-analysis/3-2-tracking-vertexing/README.html">3.2. Beyond the Basics: Tracking and Vertexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3-analysis/3-3-useful-info/README.html">3.3. Some Useful Info on EDM4hep, Analyzers, and More</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4-full-detector-sim/README.html">4. Full Simulation</a><input aria-label="Toggle navigation of 4. Full Simulation" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/FCCeeGeneralOverview/FCCeeGeneralOverview.html">4.1. FCC-ee Full Sim General Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/FCCeeGuineaPigIRBackgrounds/README.html">4.2. Using Guinea-Pig to generate interaction region backgrounds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/Geometry/Geometry.html">4.3. Changing geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../4-full-detector-sim/Visualization/Visualization.html">4.4. Visualization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="README.html">5. Distributed Computing</a><input aria-label="Toggle navigation of 5. Distributed Computing" checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">5.1. EventProducer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RegisteringToFccVO.html">5.2. Getting started with FCC distributed computing</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="Workflows.html">5.3. FCC DIRAC Example Workflows</a><input aria-label="Toggle navigation of 5.3. FCC DIRAC Example Workflows" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="workflows/Overview.html">5.3.1. Overview of the job submission script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflows/01/DiTauKKMCeeDelphesStandAlone.html">5.3.2. Workflow 1: Ditau with KKMCee + Delphes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="OutputStructure.html">5.4. Structure for /eos/experiment/fcc/prod</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../6-developing-fccsw/README.html">6. Developing FCCSW</a><input aria-label="Toggle navigation of 6. Developing FCCSW" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/FccSoftwareGit.html">6.1. Github workflow and contribution guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/FccCMakeGuide.html">6.2. CMake guide for the FCC software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/WritingAlgorithms.html">6.3. Writing Gaudi Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/DevelopingDD4hep.html">6.4. Developing DD4hep Detector models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/Edm4hepTransition.html">6.5. Guide to the Transition of FCCSW to EDM4hep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../6-developing-fccsw/FccDocPage.html">6.6. Writing documentation for the FCC Software</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../7-contributing/README.html">7. Contributing</a><input aria-label="Toggle navigation of 7. Contributing" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../7-contributing/CONDUCT.html">7.4.1. Contributor Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../7-contributing/LICENSE.html">7.4.2. License</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">External links:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://fccsw.web.cern.ch/">FCC Software</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://key4hep.web.cern.ch">Key4hep</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://fcc-ee-detector-full-sim.docs.cern.ch/">FCC-ee Detector Full Sim</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hep-fcc.github.io/FCCAnalyses/">FCCAnalyses</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hsf-training.github.io/analysis-essentials/">HSF Analysis essentials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://hep-fcc.github.io/glossary">FCC Software glossary</a></li>
+</ul>
+
+</div></div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/HEP-FCC/fcc-tutorials/blob/main/5-distributed-computing/EventProducer.md?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/HEP-FCC/fcc-tutorials/edit/main/5-distributed-computing/EventProducer.md" rel="edit" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="eventproducer">
+<h1><span class="section-number">5.1. </span>EventProducer<a class="headerlink" href="#eventproducer" title="Link to this heading">¶</a></h1>
+<!-- contributors:start -->
+<div class="callout dropdown admonition">
+<p class="admonition-title">Page contributors</p>
+<p>Clement Helsens, Juraj Smiesko</p>
+</div>
+<!-- contributors:end -->
+<p>The central production of events for FCC physics studies is done using the
+<a class="reference external" href="https://github.com/HEP-FCC/EventProducer">EventProducer</a> framework.</p>
+<div class="prereq admonition">
+<p class="admonition-title">Get in touch with coordinators</p>
+<p>In order to use the <a class="reference external" href="https://github.com/HEP-FCC/EventProducer">EventProducer</a>,
+please get in contact with the FCC software and computing coordinators as
+running central production of events requires specific rights
+<a class="reference external" href="https://hep-fcc.github.io/FCCSW/computing/computing.html">(see here)</a>.</p>
+<p>When samples produced by the <a class="reference external" href="https://github.com/HEP-FCC/EventProducer">EventProducer</a>
+framework are ready they will appear on this
+<a class="reference external" href="https://fcc-physics-events.web.cern.ch/">web-page</a>.</p>
+</div>
+<section id="clone-and-initialisation">
+<h2><span class="section-number">5.1.1. </span>Clone and initialisation<a class="headerlink" href="#clone-and-initialisation" title="Link to this heading">¶</a></h2>
+<p>If you do not attempt to contribute to the repository, simply clone it:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:HEP-FCC/EventProducer.git
+</pre></div>
+</div>
+<p>If you aim at contributing to the repository, you need to fork and then clone the forked repository:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:YOURGITUSERNAME/EventProducer.git
+</pre></div>
+</div>
+<p>Then initialise:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>./init.sh
+</pre></div>
+</div>
+<p>In order to run batch generation, please add your CERN user name to the userlist in <code class="docutils literal notranslate"><span class="pre">config/users.py</span></code></p>
+</section>
+<section id="generate-lhe-files-from-gripacks">
+<h2><span class="section-number">5.1.2. </span>Generate LHE files from gripacks<a class="headerlink" href="#generate-lhe-files-from-gripacks" title="Link to this heading">¶</a></h2>
+<p>To send jobs starting from a gridpack that does not exist but that you have produced, do the following:</p>
+<ul class="simple">
+<li><p>place gridpack on eos</p>
+<ul>
+<li><p>for FCC-hh <code class="docutils literal notranslate"><span class="pre">/eos/experiment/fcc/hh/generation/gridpacks/</span></code></p></li>
+<li><p>for FCC-ee <code class="docutils literal notranslate"><span class="pre">/eos/experiment/fcc/ee/generation/gridpacks/</span></code></p></li>
+</ul>
+</li>
+<li><p>if the gridpack is from Madgraph, name it <code class="docutils literal notranslate"><span class="pre">mg_process</span></code> (and call option <code class="docutils literal notranslate"><span class="pre">gp_mg</span></code> when running generation commands), if from powheg please name it <code class="docutils literal notranslate"><span class="pre">pw_process</span></code> (and call option <code class="docutils literal notranslate"><span class="pre">gp_pw</span></code>),</p></li>
+<li><p>add to <code class="docutils literal notranslate"><span class="pre">config/param_FCCee/hh.py</span></code> an entry corresponding to the gridpack name in the <code class="docutils literal notranslate"><span class="pre">gridpacklist</span></code> list, depending on the study.</p></li>
+</ul>
+<p>If the gridpack already exists and has been properly added to the correct <code class="docutils literal notranslate"><span class="pre">config/param_FCCee/hh.py</span></code>, then simply run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--LHE<span class="w"> </span>--send<span class="w"> </span>--condor<span class="w"> </span>--typelhe<span class="w"> </span>gp_mg<span class="w"> </span>-p<span class="w"> </span>&lt;process&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;nevents&gt;<span class="w"> </span>-N<span class="w"> </span>&lt;njobs&gt;<span class="w"> </span>-q<span class="w"> </span>&lt;queue&gt;<span class="w"> </span>--prodtag<span class="w"> </span>&lt;prodtag&gt;<span class="w"> </span>--detector<span class="w"> </span>&lt;detector&gt;
+</pre></div>
+</div>
+<p>example to send 10 jobs of 10 000 events of ZHH events at 365GeV using the longlunch queue of HTCondor for FCC–ee for the spring2021 production tag and the IDEA detector:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--LHE<span class="w"> </span>--send<span class="w"> </span>--condor<span class="w"> </span>--typelhe<span class="w"> </span>gp_mg<span class="w"> </span>-p<span class="w"> </span>mg_ee_zhh_ecm365<span class="w"> </span>-n<span class="w"> </span><span class="m">10000</span><span class="w"> </span>-N<span class="w"> </span><span class="m">10</span><span class="w"> </span>-q<span class="w"> </span>longlunch<span class="w"> </span>--prodtag<span class="w"> </span>spring2021<span class="w"> </span>--detector<span class="w"> </span>IDEA
+</pre></div>
+</div>
+<p>The options <code class="docutils literal notranslate"><span class="pre">--ncpus</span></code> and <code class="docutils literal notranslate"><span class="pre">--priority</span></code> can also be specified to increase the numbers of cpus on the cluster and to change the priority queue.</p>
+</section>
+<section id="generate-lhe-files-directly-from-mg5">
+<h2><span class="section-number">5.1.3. </span>Generate LHE files directly from MG5<a class="headerlink" href="#generate-lhe-files-directly-from-mg5" title="Link to this heading">¶</a></h2>
+<p>To send jobs directly from MG5, you need a configuration file (see in <code class="docutils literal notranslate"><span class="pre">mg5/examples</span></code> directory <code class="docutils literal notranslate"><span class="pre">*.mg5</span></code>) and, optionally:</p>
+<ul class="simple">
+<li><p>a <code class="docutils literal notranslate"><span class="pre">cuts.f</span></code> file (containing additional cuts)</p></li>
+<li><p>a model (see in <code class="docutils literal notranslate"><span class="pre">models</span></code> directory for instance)</p></li>
+</ul>
+<div class="callout admonition">
+<p class="admonition-title">Nota Bene</p>
+<p>At the moment no example is generated for FCC-ee this way. Below is an example
+for FCC-hh.</p>
+</div>
+<p>As before, you need to add the process to the <code class="docutils literal notranslate"><span class="pre">config/param_FCChh.py</span></code> file. Then you can run with the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCC<span class="w"> </span>--LHE<span class="w"> </span>--send<span class="w"> </span>--condor<span class="w"> </span>--typelhe<span class="w"> </span>mg<span class="w"> </span>-p<span class="w"> </span>mg_pp_hh_test<span class="w"> </span>--mg5card<span class="w"> </span>mg5/examples/pp_hh.mg5<span class="w"> </span>--model<span class="w"> </span>mg5/models/loop_sm_hh.tar<span class="w"> </span>-N<span class="w"> </span><span class="m">2</span><span class="w"> </span>-n<span class="w"> </span><span class="m">10000</span><span class="w"> </span>-q<span class="w"> </span>workday<span class="w">  </span>--memory<span class="w"> </span><span class="m">16000</span>.<span class="w"> </span>--disk<span class="w"> </span><span class="m">8000</span>.
+</pre></div>
+</div>
+<p>The options <code class="docutils literal notranslate"><span class="pre">--ncpus</span></code> and <code class="docutils literal notranslate"><span class="pre">--priority</span></code> can also be specified to increase the numbers of cpus on the cluster and to change the priority queue.</p>
+</section>
+<section id="generate-stdhep-files-directly-from-whizard-pythia6">
+<h2><span class="section-number">5.1.4. </span>Generate STDHEP files directly from Whizard + Pythia6<a class="headerlink" href="#generate-stdhep-files-directly-from-whizard-pythia6" title="Link to this heading">¶</a></h2>
+<p>This section describe how to send Whizard + Pythia6 jobs and produce STDHEP files. The steps to be followed can be described as:</p>
+<ol class="arabic simple">
+<li><p>Define process in <code class="docutils literal notranslate"><span class="pre">gridpacklist</span></code> in <code class="docutils literal notranslate"><span class="pre">config/param_FCCee/.py</span></code>.</p></li>
+<li><p>Write the Whizard sin card and put it in: <code class="docutils literal notranslate"><span class="pre">/eos/experiment/fcc/ee/generation/FCC-config/&lt;prodtag&gt;/FCCee/Generator/Whizard/&lt;version&gt;</span></code> by making a Pull Request to the corresponding production tag branch of <a class="reference external" href="https://github.com/HEP-FCC/FCC-config/">FCC-config</a> for example <code class="docutils literal notranslate"><span class="pre">wzp6_ee_eeH_ecm240.sin</span></code></p></li>
+<li><p>Once the Pull Request is approved and the file has appeared on the corresponding <code class="docutils literal notranslate"><span class="pre">&lt;prodtag&gt;</span></code> on <code class="docutils literal notranslate"><span class="pre">eos</span></code></p></li>
+<li><p>Send jobs</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--STDHEP<span class="w"> </span>--send<span class="w"> </span>--typestdhep<span class="w"> </span>wzp6<span class="w"> </span>--condor<span class="w"> </span>-p<span class="w"> </span>&lt;process&gt;<span class="w"> </span>-N<span class="w"> </span>&lt;njobs&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;nevents&gt;<span class="w"> </span>--prodtag<span class="w"> </span>&lt;prodtag&gt;<span class="w"> </span>-q<span class="w"> </span>&lt;queue&gt;
+</pre></div>
+</div>
+<p>Example produce 1 job of 10000 events of mumuH at FCC-ee 240GeV</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--STDHEP<span class="w"> </span>--send<span class="w"> </span>--typestdhep<span class="w"> </span>wzp6<span class="w"> </span>--condor<span class="w"> </span>-p<span class="w"> </span>wzp6_ee_mumuH_ecm240<span class="w">  </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">10000</span><span class="w"> </span>--prodtag<span class="w"> </span>spring2021<span class="w"> </span>-q<span class="w"> </span>longlunch
+</pre></div>
+</div>
+</section>
+<section id="generate-edm4hep-files-from-the-lhe-and-decay-with-pythia8">
+<h2><span class="section-number">5.1.5. </span>Generate EDM4hep files from the LHE and decay with Pythia8<a class="headerlink" href="#generate-edm4hep-files-from-the-lhe-and-decay-with-pythia8" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>If you want to let Pythia decay without specifying anything, you can use the default card, but if you have requested extra partons at matrix element, you might need to specify matching parameters to your pythia card</p></li>
+<li><p>If you want to use a specific decay, make sure that the decay you want is in <code class="docutils literal notranslate"><span class="pre">decaylist</span></code> and <code class="docutils literal notranslate"><span class="pre">branching_ratios</span></code> of the <code class="docutils literal notranslate"><span class="pre">config/param_FCCee/hh.py</span></code></p></li>
+<li><p>Then create appropriate Pythia8 card, by appending standard card with decay syntax if needed and add it to the proper directory.
+For a given production tag <prodtag> of FCC-ee this directory is:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/eos/experiment/fcc/ee/generation/FCC-config/&lt;prodtag&gt;/FCCee/Generator/Pythia8/
+</pre></div>
+</div>
+<div class="callout admonition">
+<p class="admonition-title">Nota Bene</p>
+<p>Please do not write directly on EOS. Cards should be added by making a
+documented pull request to the corresponding production tag branch in
+<a class="reference external" href="https://github.com/HEP-FCC/FCC-config/">FCC-config</a>.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Send the jobs:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCChh/FCCee<span class="w"> </span>--reco<span class="w"> </span>--send<span class="w"> </span>--type<span class="w"> </span>lhep8<span class="w"> </span>--condor<span class="w"> </span>-p<span class="w"> </span>&lt;process&gt;<span class="w"> </span>-N<span class="w"> </span>&lt;njobs&gt;<span class="w"> </span>-q<span class="w"> </span>&lt;queue&gt;<span class="w"> </span>--prodtag<span class="w"> </span>&lt;prodtag&gt;<span class="w"> </span>--detector<span class="w"> </span>&lt;detector&gt;
+</pre></div>
+</div>
+<p>Example produce 10 jobs of FCC Delphes events of ttz decaying the Z to neutrinos. :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--send<span class="w"> </span>--type<span class="w"> </span>lhep8<span class="w"> </span>--condor<span class="w"> </span>-p<span class="w"> </span>mg_ee_zhh_ecm365<span class="w"> </span>-N<span class="w"> </span><span class="m">10</span><span class="w"> </span>-q<span class="w"> </span>workday<span class="w"> </span>--prodtag<span class="w"> </span>spring2021<span class="w"> </span>--detector<span class="w"> </span>IDEA
+</pre></div>
+</div>
+<p>Please note that the decay in pythia is optional, and that there is no need to specify the number of events to run on as it will by default run over all the events present in the LHE file</p>
+<p>The options <code class="docutils literal notranslate"><span class="pre">--ncpus</span></code> and <code class="docutils literal notranslate"><span class="pre">--priority</span></code> can also be specified to increase the numbers of cpus on the cluster and to change the priority queue.</p>
+</section>
+<section id="generate-edm4hep-files-from-stdhep">
+<h2><span class="section-number">5.1.6. </span>Generate EDM4hep files from STDHEP<a class="headerlink" href="#generate-edm4hep-files-from-stdhep" title="Link to this heading">¶</a></h2>
+<p>To produce Delphes EDM4hep files from STDHEP, just run this kind of command</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--send<span class="w"> </span>--type<span class="w"> </span>stdhep<span class="w"> </span>--condor<span class="w"> </span>-p<span class="w"> </span>&lt;process&gt;<span class="w"> </span>-N<span class="w"> </span>&lt;njobs&gt;<span class="w"> </span>-q<span class="w"> </span>&lt;queue&gt;<span class="w"> </span>--prodtag<span class="w"> </span>&lt;prodtag&gt;<span class="w"> </span>--detector<span class="w"> </span>&lt;detector&gt;
+</pre></div>
+</div>
+<p>For example to run over one STDHEP file of mumuH process:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--send<span class="w"> </span>--type<span class="w"> </span>stdhep<span class="w"> </span>--condor<span class="w"> </span>-p<span class="w"> </span>wzp6_ee_mumuH_ecm240<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>-q<span class="w"> </span>longlunch<span class="w"> </span>--prodtag<span class="w"> </span>spring2021_training<span class="w"> </span>--detector<span class="w"> </span>IDEA
+</pre></div>
+</div>
+</section>
+<section id="generate-edm4hep-files-from-pythia8">
+<h2><span class="section-number">5.1.7. </span>Generate EDM4hep files from Pythia8<a class="headerlink" href="#generate-edm4hep-files-from-pythia8" title="Link to this heading">¶</a></h2>
+<p>This section describe the way most of the events were produced, using Pythia directly. The steps to be followed can be described as:</p>
+<ol class="arabic simple">
+<li><p>Define process in <code class="docutils literal notranslate"><span class="pre">pythialist</span></code> in the <code class="docutils literal notranslate"><span class="pre">config/param_FCCee/hh.py</span></code> corresponding to your FCC choice.</p></li>
+<li><p>Write Pythia8 process card and put it in: <code class="docutils literal notranslate"><span class="pre">/eos/experiment/fcc/ee/generation/FCC-config/&lt;prodtag&gt;/FCCee/Generator/Pythia8</span></code> by making a Pull Request to the corresponding production tag branch of <a class="reference external" href="https://github.com/HEP-FCC/FCC-config/">FCC-config</a> for example <code class="docutils literal notranslate"><span class="pre">p8_ee_Zbb_ecm91.cmd</span></code></p></li>
+<li><p>Once the Pull Request is approved and the file has appeared on the corresponding <code class="docutils literal notranslate"><span class="pre">&lt;prodtag&gt;</span></code> on <code class="docutils literal notranslate"><span class="pre">eos</span></code>, send jobs</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCC-hh/FCCee<span class="w"> </span>--reco<span class="w"> </span>--send<span class="w"> </span>--type<span class="w"> </span>p8<span class="w"> </span>--condor<span class="w"> </span>-p<span class="w"> </span>&lt;process&gt;<span class="w">  </span>--pycard<span class="w"> </span>&lt;pythia_card&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;nevents&gt;<span class="w"> </span>-N<span class="w"> </span>&lt;njobs&gt;<span class="w"> </span>-q<span class="w"> </span>&lt;queue&gt;<span class="w"> </span>--prodtag<span class="w"> </span>&lt;prodtag&gt;<span class="w"> </span>--detector<span class="w"> </span>&lt;detector&gt;
+</pre></div>
+</div>
+<p>Example produce 1 job of 10000 events of ZH at FCC-ee 240GeV</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--send<span class="w"> </span>--type<span class="w"> </span>p8<span class="w"> </span>-p<span class="w"> </span>p8_ee_ZH_ecm240<span class="w"> </span>-n<span class="w"> </span><span class="m">10000</span><span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>--condor<span class="w"> </span>-q<span class="w"> </span>longlunch<span class="w"> </span>--prodtag<span class="w"> </span>spring2021<span class="w"> </span>--detector<span class="w"> </span>IDEA
+</pre></div>
+</div>
+<p>The options <code class="docutils literal notranslate"><span class="pre">--ncpus</span></code> and <code class="docutils literal notranslate"><span class="pre">--priority</span></code> can also be specified to increase the numbers of cpus on the cluster and to change the priority queue.</p>
+<div class="callout admonition">
+<p class="admonition-title">Important</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">--pycard</span></code> option is not specified, this step will run with the default
+Pythia8 card (in this case <code class="docutils literal notranslate"><span class="pre">p8_ee_default.cmd</span></code>), that does not include specific
+decays nor specific matching/merging parameters.</p>
+</div>
+<p>To assist you in writing your own Pythia8 configuration cards, the manual is available <a class="reference external" href="https://pythia.org/latest-manual/Welcome.html">here</a></p>
+</section>
+<section id="expert-mode">
+<h2><span class="section-number">5.1.8. </span>Expert mode<a class="headerlink" href="#expert-mode" title="Link to this heading">¶</a></h2>
+<p>The following commands should be run with care, as they update the database, web-page etc…
+They run automatically every four hours with crontab, thus you will eventually know when your samples are ready to be used by browsing the corresponding configuration on this <a class="reference external" href="https://fcc-physics-events.web.cern.ch/">web-page</a>.
+The <code class="docutils literal notranslate"><span class="pre">--force</span></code> option is used to force the script to run in order to optimize running time, processes that have not been flagged will not be checked.</p>
+<section id="updating-the-database">
+<h3><span class="section-number">5.1.8.1. </span>Updating the database<a class="headerlink" href="#updating-the-database" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>First one need to check the eos directories that have been populated with new files.</p></li>
+</ol>
+<p>Example for LHE:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--LHE<span class="w"> </span>--checkeos<span class="w"> </span><span class="o">[</span>--process<span class="w"> </span>process<span class="o">]</span><span class="w"> </span><span class="o">[</span>--force<span class="o">]</span>
+</pre></div>
+</div>
+<p>Example for Delphes events:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--checkeos<span class="w"> </span>--prodtag<span class="w"> </span>spring2021<span class="w"> </span><span class="o">[</span>--process<span class="w"> </span>process<span class="o">]</span><span class="w"> </span><span class="o">[</span>--force<span class="o">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Second one need to check the quality of the files that have been produced.
+Example for LHE:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--LHE<span class="w"> </span>--check<span class="w"> </span><span class="o">[</span>--process<span class="w"> </span>process<span class="o">]</span><span class="w"> </span><span class="o">[</span>--force<span class="o">]</span>
+</pre></div>
+</div>
+<p>Example for Delphes events:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--check<span class="w"> </span>--prodtag<span class="w"> </span>spring2021<span class="w"> </span><span class="o">[</span>--process<span class="w"> </span>process<span class="o">]</span><span class="w"> </span><span class="o">[</span>--force<span class="o">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Then the checked files needs to be merged (individual yaml files are created for each file produced and the information needs to be aggregated):
+Example for LHE:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--LHE<span class="w"> </span>--merge<span class="w"> </span><span class="o">[</span>--process<span class="w"> </span>process<span class="o">]</span><span class="w"> </span><span class="o">[</span>--force<span class="o">]</span>
+</pre></div>
+</div>
+<p>Example for Delphes events:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--merge<span class="w"> </span>--prodtag<span class="w"> </span>spring2021<span class="w"> </span><span class="o">[</span>--process<span class="w"> </span>process<span class="o">]</span><span class="w"> </span><span class="o">[</span>--force<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="cleaning-bad-jobs">
+<h3><span class="section-number">5.1.8.2. </span>Cleaning bad jobs<a class="headerlink" href="#cleaning-bad-jobs" title="Link to this heading">¶</a></h3>
+<p>To clean jobs that are flagged as bad, the following command can be used for LHE:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--LHE<span class="w"> </span>--clean<span class="w"> </span><span class="o">[</span>--process<span class="w"> </span>process<span class="o">]</span>
+</pre></div>
+</div>
+<p>and for Delphes</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--clean<span class="w"> </span>--prodtag<span class="w"> </span>spring2021<span class="w"> </span><span class="o">[</span>--process<span class="w"> </span>process<span class="o">]</span>
+</pre></div>
+</div>
+<p>As the code checks the files that are in the end written on eos, we need to clean also old jobs that don’t produced outputs 3 days after they started.
+To do so run the following command for LHE</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--LHE<span class="w"> </span>--cleanold<span class="w"> </span><span class="o">[</span>--process<span class="w"> </span>process<span class="o">]</span>
+</pre></div>
+</div>
+<p>and for Delphes</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--cleanold<span class="w"> </span>--prodtag<span class="w"> </span>spring2021<span class="w"> </span><span class="o">[</span>--process<span class="w"> </span>process<span class="o">]</span>
+</pre></div>
+</div>
+<p>If you want to completly remove a process, the following command can be used with care for LHE:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--LHE<span class="w"> </span>--remove<span class="w"> </span>--process<span class="w"> </span>process
+</pre></div>
+</div>
+<p>and for Delphes</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--remove<span class="w"> </span>--process<span class="w"> </span>process<span class="w"> </span>--prodtag<span class="w"> </span>spring2021
+</pre></div>
+</div>
+</section>
+<section id="update-the-webpage">
+<h3><span class="section-number">5.1.8.3. </span>Update the webpage<a class="headerlink" href="#update-the-webpage" title="Link to this heading">¶</a></h3>
+<p>The webpage can be updated after the files have been checked and merged by running for LHE</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--LHE<span class="w"> </span>--web
+</pre></div>
+</div>
+<p>and for Delphes</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--web<span class="w"> </span>--prodtag<span class="w"> </span>spring2021
+</pre></div>
+</div>
+</section>
+<section id="create-the-sample-list-for-analyses">
+<h3><span class="section-number">5.1.8.4. </span>Create the sample list for analyses<a class="headerlink" href="#create-the-sample-list-for-analyses" title="Link to this heading">¶</a></h3>
+<p>To create the list of samples to be used in physics analyses for <code class="docutils literal notranslate"><span class="pre">spring2021</span></code> production tag:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>bin/run.py<span class="w"> </span>--FCCee<span class="w"> </span>--reco<span class="w"> </span>--sample<span class="w"> </span>--prodtag<span class="w"> </span>spring2021
+</pre></div>
+</div>
+</section>
+<section id="all-in-one">
+<h3><span class="section-number">5.1.8.5. </span>All in One<a class="headerlink" href="#all-in-one" title="Link to this heading">¶</a></h3>
+<p>a script can be used to do all the steps in one go, for example for LHE at FCC-ee:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/cronrun_LHE_FCCee.sh
+</pre></div>
+</div>
+<p>and for Delphes events:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/cronrun_RECO_FCCee.sh<span class="w"> </span>&lt;prodtag&gt;<span class="w"> </span>&lt;detector&gt;
+</pre></div>
+</div>
+<p>for example for Delphes events with <code class="docutils literal notranslate"><span class="pre">spring2021</span></code> production tag and <code class="docutils literal notranslate"><span class="pre">IDEA</span></code> detector:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./scripts/cronrun_RECO_FCCee.sh<span class="w"> </span>spring2021<span class="w"> </span>IDEA
+</pre></div>
+</div>
+</section>
+</section>
+<section id="produce-samples-with-eventproducer-outside-of-official-campaign">
+<h2><span class="section-number">5.1.9. </span>Produce samples with EventProducer outside of official campaign<a class="headerlink" href="#produce-samples-with-eventproducer-outside-of-official-campaign" title="Link to this heading">¶</a></h2>
+<p>This section explains how you can use the EventProducer to produce your own database of events.</p>
+<ol class="arabic simple">
+<li><p>You first need to create three output directories with sufficient disk space. One where the samples could be written, for example on your CERN <code class="docutils literal notranslate"><span class="pre">eos</span></code>. An other public directory to store the database that is created and associate each job/file on eos, and one that can be browsed from the web, for example using your eos cern box for all:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>For<span class="w"> </span>samples<span class="w">  </span>/eos/home-&lt;X&gt;/&lt;cernlogin&gt;/generation/
+For<span class="w"> </span>public<span class="w">   </span>/eos/home-&lt;X&gt;/&lt;cernlogin&gt;/public/FCCDicts/
+For<span class="w"> </span>web<span class="w">      </span>/eos/home-&lt;X&gt;/&lt;cernlogin&gt;/www/data/FCCee/
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">config/param_FCCee.py</span></code>:</p>
+<ul class="simple">
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">webbasedir</span></code> by your directory <code class="docutils literal notranslate"><span class="pre">For</span> <span class="pre">web</span></code></p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">pubbasedir</span></code> by your directory <code class="docutils literal notranslate"><span class="pre">For</span> <span class="pre">public</span></code></p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">eosbaseoutputdir</span></code> by <code class="docutils literal notranslate"><span class="pre">For</span> <span class="pre">samples</span></code></p></li>
+<li><p>If you want to use your own <code class="docutils literal notranslate"><span class="pre">FCC-config</span></code>, also replace <code class="docutils literal notranslate"><span class="pre">eosbaseinputdir</span></code> to point to where it is cloned.</p></li>
+</ul>
+</li>
+<li><p>You should now be ready to send jobs using your own work areas, you will have to run the checks yourself, have a look at the <a class="reference internal" href="#expert-mode">Expert mode</a></p></li>
+</ol>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="RegisteringToFccVO.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><span class="section-number">5.2. </span>Getting started with FCC distributed computing</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="README.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><span class="section-number">5. </span>Distributed Computing</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, CERN
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">5.1. EventProducer</a><ul>
+<li><a class="reference internal" href="#clone-and-initialisation">5.1.1. Clone and initialisation</a></li>
+<li><a class="reference internal" href="#generate-lhe-files-from-gripacks">5.1.2. Generate LHE files from gripacks</a></li>
+<li><a class="reference internal" href="#generate-lhe-files-directly-from-mg5">5.1.3. Generate LHE files directly from MG5</a></li>
+<li><a class="reference internal" href="#generate-stdhep-files-directly-from-whizard-pythia6">5.1.4. Generate STDHEP files directly from Whizard + Pythia6</a></li>
+<li><a class="reference internal" href="#generate-edm4hep-files-from-the-lhe-and-decay-with-pythia8">5.1.5. Generate EDM4hep files from the LHE and decay with Pythia8</a></li>
+<li><a class="reference internal" href="#generate-edm4hep-files-from-stdhep">5.1.6. Generate EDM4hep files from STDHEP</a></li>
+<li><a class="reference internal" href="#generate-edm4hep-files-from-pythia8">5.1.7. Generate EDM4hep files from Pythia8</a></li>
+<li><a class="reference internal" href="#expert-mode">5.1.8. Expert mode</a><ul>
+<li><a class="reference internal" href="#updating-the-database">5.1.8.1. Updating the database</a></li>
+<li><a class="reference internal" href="#cleaning-bad-jobs">5.1.8.2. Cleaning bad jobs</a></li>
+<li><a class="reference internal" href="#update-the-webpage">5.1.8.3. Update the webpage</a></li>
+<li><a class="reference internal" href="#create-the-sample-list-for-analyses">5.1.8.4. Create the sample list for analyses</a></li>
+<li><a class="reference internal" href="#all-in-one">5.1.8.5. All in One</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#produce-samples-with-eventproducer-outside-of-official-campaign">5.1.9. Produce samples with EventProducer outside of official campaign</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    </body>
+</html>

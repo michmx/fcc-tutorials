@@ -1,0 +1,1 @@
+import{c as e}from"/fcc-tutorials/theme-jupyter-book-v2/build/_shared/chunk-OZE3FFNP.js";var s=e((r,a)=>{function n(t){return{name:"Node REPL",contains:[{className:"meta",starts:{end:/ |$/,starts:{end:"$",subLanguage:"javascript"}},variants:[{begin:/^>(?=[ ]|$)/},{begin:/^\.\.\.(?=[ ]|$)/}]}]}}a.exports=n});export default s();
