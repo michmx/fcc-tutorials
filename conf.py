@@ -1,6 +1,5 @@
 project = 'FCC Tutorials'
 copyright = '2026, CERN'
-html_logo = '_static/img/fcc-logo-light.png'
 html_favicon = '_static/img/favicon.ico'
 
 exclude_patterns = [
@@ -13,6 +12,11 @@ exclude_patterns = [
 html_theme = 'sphinx_book_theme'
 
 html_theme_options = {
+    # Dark-text logo on the light theme, light-text logo on the dark theme
+    'logo': {
+        'image_light': '_static/img/fcc-logo-dark.png',
+        'image_dark': '_static/img/fcc-logo-light.png',
+    },
     'repository_url': 'https://github.com/HEP-FCC/fcc-tutorials',
     'repository_branch': 'main',
     'path_to_docs': '',
