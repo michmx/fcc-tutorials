@@ -1,0 +1,99 @@
+name: Themes demo
+
+# Builds `main` and every `theme-*` branch with plain sphinx-build, each with
+# its own conf.py and requirements.txt, and publishes them side by side on
+# gh-pages under <branch>/. Unlike sphinx-multiversion, this honours the theme
+# configured on each branch.
+
+on:
+  push:
+    branches:
+    - main
+    - 'theme-*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      branches: ${{ steps.list.outputs.branches }}
+    steps:
+    - name: List main and theme-* branches
+      id: list
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        branches=$( (echo main; gh api "repos/${GITHUB_REPOSITORY}/branches" --paginate \
+                       --jq '.[].name | select(startswith("theme-"))') \
+                    | sort -u | jq -R . | jq -sc . )
+        echo "branches=${branches}" >> "$GITHUB_OUTPUT"
+        echo "Building: ${branches}"
+
+  build:
+    needs: discover
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: ${{ fromJson(needs.discover.outputs.branches) }}
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: ${{ matrix.branch }}
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Install this branch's requirements
+      run: pip3 install -r requirements.txt
+    - name: Sphinx build
+      run: |
+        sphinx-build -b html . build
+        grep -E '^html_theme[[:space:]]*=' conf.py | tail -1 \
+          | sed -E "s/^html_theme[[:space:]]*=[[:space:]]*['\"]([^'\"]+)['\"].*/\1/" > build/THEME.txt
+    - uses: actions/upload-artifact@v4
+      with:
+        name: site-${{ matrix.branch }}
+        path: build
+        if-no-files-found: error
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v4
+      with:
+        pattern: site-*
+        path: site
+    - name: Assemble site
+      run: |
+        cd site
+        for d in site-*; do mv "$d" "${d#site-}"; done
+        {
+          echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>FCC Tutorials theme demos</title>'
+          echo '<style>body{font-family:sans-serif;max-width:40em;margin:3em auto}li{margin:.5em 0}code{color:#555}</style></head><body>'
+          echo '<h1>FCC Tutorials theme demos</h1><ul>'
+          for d in main theme-*; do
+            [ -d "$d" ] || continue
+            theme=$(cat "$d/THEME.txt" 2>/dev/null || echo unknown)
+            rm -f "$d/THEME.txt"
+            echo "<li><a href=\"./$d/index.html\">$d</a> &mdash; <code>$theme</code></li>"
+          done
+          echo "</ul><p>Built from <a href=\"https://github.com/${GITHUB_REPOSITORY}\">${GITHUB_REPOSITORY}</a> at ${GITHUB_SHA}.</p></body></html>"
+        } > index.html
+        touch .nojekyll
+    - name: Publish gh-pages
+      run: |
+        cd site
+        git init -b gh-pages
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add -A .
+        git commit -m "Rebuild theme demos at ${GITHUB_SHA}"
+        git push -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git" gh-pages:gh-pages

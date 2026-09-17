@@ -1,9 +1,8 @@
 name: Publish
 
+# On this fork the gh-pages branch is owned by themes-demo.yml, so this
+# multiversion publish is manual-only to avoid the two overwriting each other.
 on:
-  push:
-    branches:
-    - main
   workflow_dispatch:
 
 jobs:
