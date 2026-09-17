@@ -1,10 +1,6 @@
-# import sphinx_rtd_theme
-
 project = 'FCC Tutorials'
 copyright = '2026, CERN'
-html_logo = '_static/img/fcc-logo-light.png'
 html_favicon = '_static/img/favicon.ico'
-html_theme = 'sphinx_rtd_theme'
 
 exclude_patterns = [
     'venv',
@@ -13,18 +9,34 @@ exclude_patterns = [
     'archive'
 ]
 
-html_theme = "sphinx_rtd_theme"
+html_theme = 'furo'
 
-html_context = {
-    'display_github': True,
-    'github_user': 'HEP-FCC',
-    'github_repo': 'fcc-tutorials',
-    'github_version': 'main/',
+html_theme_options = {
+    # Dark-text logo on the light theme, light-text logo on the dark theme
+    'light_logo': 'img/fcc-logo-dark.png',
+    'dark_logo': 'img/fcc-logo-light.png',
+    # "Edit this page" button
+    'source_repository': 'https://github.com/HEP-FCC/fcc-tutorials',
+    'source_branch': 'main',
+    'source_directory': '',
+}
+
+# Furo's default sidebar plus the sphinx-multiversion switcher
+# (_templates/sidebar/versions.html, rendered only in multiversion builds)
+html_sidebars = {
+    '**': [
+        'sidebar/brand.html',
+        'sidebar/search.html',
+        'sidebar/scroll-start.html',
+        'sidebar/navigation.html',
+        'sidebar/versions.html',
+        'sidebar/scroll-end.html',
+        'sidebar/variant-selector.html',
+    ]
 }
 
 extensions = [
     'myst_parser',
-    'sphinx_rtd_theme',
     'sphinx_togglebutton',
     'sphinx_copybutton',
     'sphinx_multiversion',

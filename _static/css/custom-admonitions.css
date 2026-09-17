@@ -1,182 +1,88 @@
-/* Custom admonitions inspired by LHCb Starterkit*/
-
-.rst-content .admonition button.toggle-button {
-    top: .15em;
-    right: 0.4em;
-}
-
-.rst-content .admonition button.toggle-button:before {
-    top: -0.5em;
-    position: relative;
-}
-
+/* Custom admonitions inspired by LHCb Starterkit, styled for the Furo theme.
+   Furo colours admonitions with a left border, a tinted title bar and an SVG
+   icon drawn via mask-image (see Furo's content/_admonitions.sass). The icon
+   names below are Furo's built-in --icon-* variables. */
 
 /* Prerequisite admonition */
-.rst-content .prereq.admonition {
-    background-color: inherit;
-    border: 2px solid;
-    border-color: #faebcc;
+.admonition.prereq {
+    border-left-color: #c9a227;
 }
-
-.rst-content .prereq.admonition .admonition-title {
-    color: #8a6d3b;
-    background-color: #fcf8e3;
-    border-bottom: 2px solid;
-    border-color: inherit;
+.admonition.prereq > .admonition-title {
+    background-color: rgba(201, 162, 39, 0.2);
 }
-
-.rst-content .prereq.admonition .admonition-title:before {
-    margin-right: 12px;
-    content: "\f135"; /* rocket */
+.admonition.prereq > .admonition-title::before {
+    background-color: #c9a227;
+    mask-image: var(--icon-abstract);
 }
-
-.rst-content .prereq.admonition button.toggle-button {
-  color: #8a6d3b;
-}
-
 
 /* Callout admonition */
-.rst-content .callout.admonition {
-    background-color: inherit;
-    border: 2px solid;
-    border-color: #73a9d9;
+.admonition.callout {
+    border-left-color: #3b8bd0;
 }
-
-.rst-content .callout.admonition .admonition-title {
-    color: #214f78;
-    background-color: #9bc2e4;
-    border-bottom: 2px solid;
-    border-color: inherit;
+.admonition.callout > .admonition-title {
+    background-color: rgba(59, 139, 208, 0.2);
 }
-
-.rst-content .callout.admonition .admonition-title:before {
-    margin-right: 12px;
-    /* content: "\f05a"; /* info-circle */
-    content: "\f129"; /* info */
+.admonition.callout > .admonition-title::before {
+    background-color: #3b8bd0;
+    mask-image: var(--icon-info);
 }
-
-.rst-content .callout.admonition button.toggle-button {
-  color: #214f78;
-}
-
 
 /* Challenge admonition */
-.rst-content .challenge.admonition {
-    background-color: inherit;
-    border: 2px solid;
-    border-color: #d6e9c6;
+.admonition.challenge {
+    border-left-color: #5cb85c;
 }
-
-.rst-content .challenge.admonition .admonition-title {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-bottom: 2px solid;
-    border-color: inherit;
+.admonition.challenge > .admonition-title {
+    background-color: rgba(92, 184, 92, 0.2);
 }
-
-.rst-content .challenge.admonition .admonition-title:before {
-    margin-right: 12px;
-    /* content: "\f456"; /* flag-pennant */
-    /* content: "\f11e"; /* flag-checkered */
-    content: "\f024"; /* flag */
+.admonition.challenge > .admonition-title::before {
+    background-color: #5cb85c;
+    mask-image: var(--icon-question);
 }
-
-.rst-content .challenge.admonition button.toggle-button {
-  color: #3c763d;
-}
-
 
 /* Solution admonition */
-.rst-content .solution.admonition {
-    background-color: inherit;
-    border: 2px solid;
-    border-color: #ebccd1;
+.admonition.solution {
+    border-left-color: #d9534f;
 }
-
-.rst-content .solution.admonition .admonition-title {
-    color: #a94442;
-    background-color: #f2dede;
-    border-bottom: 2px solid;
-    border-color: inherit;
+.admonition.solution > .admonition-title {
+    background-color: rgba(217, 83, 79, 0.2);
 }
-
-.rst-content .solution.admonition .admonition-title:before {
-    margin-right: 12px;
-    content: "\f00c"; /* check */
+.admonition.solution > .admonition-title::before {
+    background-color: #d9534f;
+    mask-image: var(--icon-pencil);
 }
-
-.rst-content .objectives.admonition button.toggle-button {
-  color: #a94442;
-}
-
 
 /* Objectives admonition */
-.rst-content .objectives.admonition {
-    background-color: inherit;
-    border: 2px solid;
-    border-color: #faebcc;
+.admonition.objectives {
+    border-left-color: #c9a227;
 }
-
-.rst-content .objectives.admonition .admonition-title {
-    color: #8a6d3b;
-    background-color: #fcf8e3;
-    border-bottom: 2px solid;
-    border-color: inherit;
+.admonition.objectives > .admonition-title {
+    background-color: rgba(201, 162, 39, 0.2);
 }
-
-.rst-content .objectives.admonition .admonition-title:before {
-    margin-right: 12px;
-    content: "\f201"; /* chart-line */
+.admonition.objectives > .admonition-title::before {
+    background-color: #c9a227;
+    mask-image: var(--icon-flame);
 }
-
-.rst-content .objectives.admonition button.toggle-button {
-  color: #8a6d3b;
-}
-
 
 /* Keypoints admonition */
-.rst-content .keypoints.admonition {
-    background-color: inherit;
-    border: 2px solid;
-    border-color: #d6e9c6;
+.admonition.keypoints {
+    border-left-color: #5cb85c;
 }
-
-.rst-content .keypoints.admonition .admonition-title {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-bottom: 2px solid;
-    border-color: inherit;
+.admonition.keypoints > .admonition-title {
+    background-color: rgba(92, 184, 92, 0.2);
 }
-
-.rst-content .keypoints.admonition .admonition-title:before {
-    margin-right: 12px;
-    content: "\f084"; /* key */
+.admonition.keypoints > .admonition-title::before {
+    background-color: #5cb85c;
+    mask-image: var(--icon-spark);
 }
-
-.rst-content .keypoints.admonition button.toggle-button {
-  color: #3c763d;
-}
-
 
 /* Discussion admonition */
-.rst-content .discussion.admonition {
-    background-color: inherit;
-    border: 2px solid;
-    border-color: #bce8f1;
+.admonition.discussion {
+    border-left-color: #31708f;
 }
-
-.rst-content .discussion.admonition .admonition-title {
-    color: #31708f;
-    background-color: #d9edf7;
-    border-bottom: 2px solid;
-    border-color: inherit;
+.admonition.discussion > .admonition-title {
+    background-color: rgba(49, 112, 143, 0.2);
 }
-
-.rst-content .discussion.admonition .admonition-title:before {
-    margin-right: 12px;
-    content: "\f0f3"; /* bell */
-}
-
-.rst-content .discussion.admonition button.toggle-button {
-  color: #31708f;
+.admonition.discussion > .admonition-title::before {
+    background-color: #31708f;
+    mask-image: var(--icon-info);
 }
