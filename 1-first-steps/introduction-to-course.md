@@ -51,7 +51,7 @@ repository, and __you__ can contribute!
 
 Please [submit an issue][fcc-tutorials-issues] if you spot a mistake or you
 think something isn't clear enough, or you can
-[make the changes yourself](contributing-lesson) and open a pull request.
+[make the changes yourself](#contributing-lesson) and open a pull request.
 
 If you're not already familiar with git, you could check out the HSF
 [Analysis essentials][analysis-essentials] course.

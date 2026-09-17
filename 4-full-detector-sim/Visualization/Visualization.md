@@ -170,7 +170,7 @@ The obtained EDM4hep JSON file should look similar to
 
 ### Event Data from Delphes Fast Simulation
 
-Let's start by generating sample files using [](delphesedm4hep) tutorial section.
+Let's start by generating sample files using [](#delphesedm4hep) tutorial section.
 
 Produced EDM4hep ROOT file(s) needs to be converted into intermediate JSON
 format with the `edm4hep2json` converter. Let's look at the file more closely,

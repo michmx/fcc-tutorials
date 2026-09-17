@@ -191,7 +191,7 @@ Monte-Carlo particles proceeds via the `MCRecoAssociations` collection, and its
 two associated  collections of references, `MCRecoAssociations#0` and
 `MCRecoAssociations#1`, all of the same size. The collectionID of
 `MCRecoAssociations#0` is equal to 7 in the example file used here (see above,
-[](structure-of-edm4hep-files)), which means that `MCRecoAssociations#0` points
+[](#structure-of-edm4hep-files)), which means that `MCRecoAssociations#0` points
 to the `ReconstructedParticles`. While the collectionID of
 `MCRecoAssociations#1` is equal to 5, i.e. `MCRecoAssociations#1` points to the
 Particle collection (i.e. the Monte-Carlo particles).

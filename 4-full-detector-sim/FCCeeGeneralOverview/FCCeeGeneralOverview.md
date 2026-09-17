@@ -396,7 +396,7 @@ From there, you can navigate the geometry hierarchy to see how volumes are neste
 This tool is useful but not perfect and will not meet all the needs (especially
 if you want to overlay a physics event). To go further, other solutions are
 described in the dedicated
-[Visualization](../Visualization/Visualization.md#visualization)
+[Visualization](../Visualization/Visualization.md)
 tutorial.
 
 ## Additional Resources

@@ -41,3 +41,5 @@ book.pdf
 *~
 build
 venv
+# Jupyter Book 2 build output
+_build

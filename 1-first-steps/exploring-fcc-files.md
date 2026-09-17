@@ -22,7 +22,7 @@ They are kept for historical reasons as there is large FCC-hh dataset already
 generated.
 
 To find out more about currently used data format: EDM4hep, click
-[here](structure-of-edm4hep-files).
+[here](#structure-of-edm4hep-files).
 :::
 
 

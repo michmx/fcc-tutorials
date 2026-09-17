@@ -68,15 +68,15 @@ To create collapsible admonition add additional classes:
 Example of collapsible admonition:
 ```markdown
 :::{admonition} Collapsable admonition
-:class: prereq dropdown toggle-shown
-
+:class: prereq dropdown
+:open: true
 Text of a collapsible admonition.
 :::
 ```
 
 :::{admonition} Collapsible admonition
-:class: prereq dropdown toggle-shown
-
+:class: prereq dropdown
+:open: true
 Text of a collapsable admonition.
 :::
 
