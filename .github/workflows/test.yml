@@ -17,8 +17,8 @@ jobs:
                    && fromJSON('["/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh"]')
                    || fromJSON('["/cvmfs/sw.hsf.org/key4hep/setup.sh", "/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh"]') }}
     steps:
-    - uses: actions/checkout@v4
-    - uses: cvmfs-contrib/github-action-cvmfs@v4
+    - uses: actions/checkout@v7
+    - uses: cvmfs-contrib/github-action-cvmfs@v5
     - name: Start container
       run: |
         docker run -it \
@@ -33,7 +33,7 @@ jobs:
         tar -xzf pandoc-3.10-linux-amd64.tar.gz;\
         cp pandoc-3.10/bin/pandoc /usr/local/bin/;\
         cd ./Package;\
-        source ${{ matrix.STACK }};\
+        source ${{ matrix.STACK }} ${{ contains(matrix.STACK, 'sw-nightlies') && '--spack' || '' }};\
         mkdir build;\
         cd build;\
         cmake ..;\
