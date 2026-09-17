@@ -1,0 +1,15 @@
+{#- sphinx-multiversion version switcher for the Furo sidebar.
+    `current_version`/`versions` are only defined when building with
+    sphinx-multiversion, so plain sphinx-build renders nothing. -#}
+{%- if current_version %}
+<div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
+  <ul>
+    {%- for item in versions %}
+    <li class="toctree-l1{% if item.name == current_version.name %} current-page{% endif %}">
+      <a class="reference internal" href="{{ item.url }}">{{ item.name }}</a>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>
+{%- endif %}
