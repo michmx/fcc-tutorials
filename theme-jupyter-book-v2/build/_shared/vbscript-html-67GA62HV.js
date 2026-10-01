@@ -1,0 +1,1 @@
+import{c as t}from"/fcc-tutorials/theme-jupyter-book-v2/build/_shared/chunk-RAQ24GF6.js";var i=t((a,n)=>{function e(s){return{name:"VBScript in HTML",subLanguage:"xml",contains:[{begin:"<%",end:"%>",subLanguage:"vbscript"}]}}n.exports=e});export default i();
