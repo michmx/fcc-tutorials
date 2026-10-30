@@ -15,6 +15,7 @@ Michel Villanueva
 - Know the difference between a local batch system and the grid
 - Learn the vocabulary used in the rest of this chapter: Virtual Organization, certificate,
   proxy, job, Storage Element, logical file name, replica, ...
+- Know how FCC data is catalogued today and the role Rucio will play
 :::
 
 This page is written for readers who have never used grid computing in High Energy Physics (HEP). Its purpose is to explain the concepts that the
@@ -171,16 +172,51 @@ We will exercise this in the next pages. For now, just remember that you need a 
 If a command fails with an authentication error, the first thing to check is whether your proxy has expired, with `dirac-proxy-info`.
 
 
+## Data management
+
+Since jobs are transient and sites do not share a filesystem, files need a name that does not depend on where they are stored.
+
+### Logical file names and replicas
+
+- A **Logical File Name (LFN)** identifies a file, independently of where it is stored. For example:
+  ```
+  /fcc/ee/generation/DelphesEvents/winter2023/IDEA/p8_ee_ZZ_ecm240/events_051628351.root
+  ```
+  allows to retrieve the file from any site that has a copy, without knowing its physical location.
+
+- A **replica** is a physical copy of that file on a Storage Element. One LFN can have several replicas, e.g. at CERN (`CERN-DST-EOS`), 
+  INFN CNAF (`CNAF-DISK`) or Glasgow (`GLASGOW-DISK`).
+
+- The **File Catalog** connects each LFN to its replicas. FCC uses the DIRAC File Catalog, which also stores searchable metadata 
+  (campaign, energy, process, detector, production ID, number of events) and the ancestry of each file: which simulated file a 
+  reconstructed file comes from, and which generator file that simulated file was produced from.
+
+:::{admonition} Files at CERN and EOS
+:class: note
+
+Files of central productions stored at CERN are also visible on EOS: prepend `/eos/experiment/` to the LFN to get the EOS path, 
+e.g. `/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/p8_ee_ZZ_ecm240/events_051628351.root`.
+
+Produced datasets are published in [Dataset Metadata Interface](https://fcc-dami.web.cern.ch/), 
+together with their EOS path, which is what you pass to FCCAnalyses.
+:::
+
+
+### Rucio
+
+**Rucio** is a scientific data management system, developed by ATLAS and now used by CMS, Belle II, DUNE and others. 
+It is *declarative*: instead of copying and deleting files one by one, you write **replication rules** translated as "keep two copies of this 
+dataset, one at CERN, for six months", and Rucio schedules the transfers, retries failures and removes replicas that are no longer needed. 
+
+Data is addressed as `scope:name`, where the name can refer to a file, a dataset (a set of files) or a container (a set of datasets).
+
+FCC is adopting Rucio on top of its DIRAC productions: DIRAC keeps running the jobs, Rucio will manage the replicas and their lifetime.
+
+
 ## Other names you will hear
 
-- **Rucio** is a scientific data management system, developed by ATLAS and now used by CMS,
-  Belle II, DUNE and many others. It plays the role of Data Management System and File Catalog, with a rich 
-  *rule-based* model: you declare how many replicas a dataset should have and where, and Rucio takes care. 
-  FCC is considering the adoption of Rucio for its data management, but currently uses DIRAC's own File Catalog.
-
 - **FTS** (File Transfer Service) is the service that performs bulk third-party transfers between Storage Elements. 
-  DIRAC and Rucio both hand large replication requests to FTS.
-
+  Both DIRAC and Rucio can submit large replication requests to FTS.
 
 
 :::{admonition} Key Points
@@ -190,5 +226,6 @@ If a command fails with an authentication error, the first thing to check is whe
 - Trust flows through a chain: a CA certifies you, a VO vouches for you, a proxy carries that identity to wherever your job runs. Proxies expire after about a day.
 - A job ships small files in sandboxes and stores large results on Storage Elements. 
 - Files have one logical name (LFN) and possibly many physical replicas; the File Catalog connects them.
+- Analysts find datasets in the Dataset Metadata Interface and read them from EOS. Rucio, being commissioned for FCC, will manage replicas and their lifetime through rules.
 :::
 
