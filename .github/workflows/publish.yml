@@ -6,18 +6,24 @@ on:
     - main
 
 jobs:
-  sphinx:
+  jupyter-book:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v7
+    - uses: actions/setup-node@v4
       with:
-        fetch-depth: 0
+        node-version: 22
     - name: Install Requirements
       run: |
         pip3 install -r requirements.txt
-    - name: Sphinx build
+    - name: Jupyter Book build
+      env:
+        # The site is served from <site>/main/, see the redirect below
+        BASE_URL: /${{ github.event.repository.name }}/main
       run: |
-        sphinx-multiversion . build
+        jupyter book build --html
+        mkdir build
+        cp -r _build/html build/main
     - name: Publish gh-pages
       run: |
         cd build
