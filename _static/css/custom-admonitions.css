@@ -122,3 +122,94 @@ html.dark .myst-admonition.discussion > .myst-admonition-header {
   align-self: center;
   text-align: center;
 }
+
+/* ------------------------------------------------------------------
+ * Typography and layout
+ *
+ * They build the book with a slightly larger font,
+ * a wider text column and larger, more padded code blocks.
+ * ------------------------------------------------------------------ */
+
+:root {
+  /* The theme sizes everything in rem/ch, so this scales the whole page.
+   * Theme default: 16px. */
+  --fcc-font-size: 17px;
+  /* The text column is six of these grid tracks (theme default: 10ch,
+   * i.e. ~60 characters per line). */
+  --fcc-body-track: 12ch;
+}
+
+html {
+  font-size: var(--fcc-font-size);
+}
+
+.article.content {
+  line-height: 1.7;
+}
+
+/* Widen the text column. These are the theme's `article-grid` templates
+ * for the lg/xl/2xl breakpoints with the body tracks made configurable;
+ * `xl:article-grid` (primary sidebar) must stay in sync with the article. */
+@media (min-width: 1024px) {
+  .article-grid,
+  .xl\:article-grid {
+    grid-template-columns:
+      [screen-start] .25rem [screen-inset-start page-start] 1rem
+      [page-inset-start body-outset-start] 1fr
+      [body-start gutter-left-start] 1rem
+      [body-inset-start] minmax(8ch, var(--fcc-body-track))
+      [middle-start] minmax(8ch, var(--fcc-body-track))
+      [gutter-left-end] minmax(8ch, var(--fcc-body-track)) minmax(8ch, var(--fcc-body-track))
+      [gutter-right-start] minmax(8ch, var(--fcc-body-track))
+      [middle-end] minmax(8ch, var(--fcc-body-track))
+      [body-inset-end] 1rem [body-end gutter-right-end] 3rem
+      [body-outset-end] minmax(5rem, 13rem) [page-inset-end] 3rem
+      [page-end] 1fr [screen-inset-end] .25rem [screen-end];
+  }
+}
+
+@media (min-width: 1280px) {
+  .article-grid,
+  .xl\:article-grid {
+    grid-template-columns:
+      [screen-start] .25rem [screen-inset-start] 1fr [page-start] 3rem
+      [page-inset-start] minmax(4rem, 9rem) [body-outset-start] 3rem
+      [body-start gutter-left-start] 1rem
+      [body-inset-start] minmax(8ch, var(--fcc-body-track))
+      [middle-start] minmax(8ch, var(--fcc-body-track))
+      [gutter-left-end] minmax(8ch, var(--fcc-body-track)) minmax(8ch, var(--fcc-body-track))
+      [gutter-right-start] minmax(8ch, var(--fcc-body-track))
+      [middle-end] minmax(8ch, var(--fcc-body-track))
+      [body-inset-end] 1rem [body-end gutter-right-end] 3rem
+      [body-outset-end] minmax(5rem, 13rem) [page-inset-end] 3rem
+      [page-end] 1fr [screen-inset-end] .25rem [screen-end];
+  }
+}
+
+@media (min-width: 1536px) {
+  .article-grid,
+  .xl\:article-grid {
+    grid-template-columns:
+      [screen-start] .5rem [screen-inset-start] 1fr [page-start] 3rem
+      [page-inset-start] minmax(4rem, 9rem) [body-outset-start] 3rem
+      [body-start gutter-left-start] 1rem
+      [body-inset-start] minmax(8ch, var(--fcc-body-track))
+      [middle-start] minmax(8ch, var(--fcc-body-track))
+      [gutter-left-end] minmax(8ch, var(--fcc-body-track)) minmax(8ch, var(--fcc-body-track))
+      [gutter-right-start] minmax(8ch, var(--fcc-body-track))
+      [middle-end] minmax(8ch, var(--fcc-body-track))
+      [body-inset-end] 1rem [body-end gutter-right-end] 3rem
+      [body-outset-end] minmax(5rem, 13rem) [page-inset-end] 3rem
+      [page-end] 1fr [screen-inset-end] .5rem [screen-end];
+  }
+}
+
+/* Code blocks: theme default is `text-sm` (0.875rem) with `p-3` padding */
+.myst-code {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.myst-code-body {
+  padding: 1rem 1.25rem;
+}
