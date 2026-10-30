@@ -49,7 +49,7 @@ A **batch system** is a scheduler that queues jobs and runs them on a farm of ma
 For example, CERN runs [HTCondor](https://batchdocs.web.cern.ch/) on its farm, reachable from `lxplus`. Many universities run HTCondor or Slurm. In batch system 
 you already have an account, the shared filesystem (AFS, EOS) is mounted on the worker nodes, and you can `ssh` in to look at things.
 
-The grid glues many batch systems together behind a single interface. In exchange for scale, there is no shared filesystem across sites,
+The grid glues many batch systems together behind a single interface. In exchange for scale,
 you cannot log in, and you need a grid identity rather than a local account.
 
 
